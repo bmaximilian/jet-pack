@@ -1,0 +1,32 @@
+{
+  "name": "react-filter",
+  "version": "1.0.0",
+  "description": "Search/Filter data coming from a react prop",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmaximilian/jet-pack.git"
+  },
+  "keywords": [
+    "bmaximilian",
+    "fuzzy",
+    "search",
+    "filter",
+    "helper",
+    "utils",
+    "react",
+    "hoc",
+    "jet",
+    "pack"
+  ],
+  "author": "Maximilian Beck <contact@maximilianbeck.de> (maximilianbeck.de)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bmaximilian/jet-pack/issues"
+  },
+  "homepage": "https://github.com/bmaximilian/jet-pack#readme"
+}

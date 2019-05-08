@@ -1,0 +1,78 @@
+{
+  "name": "request",
+  "version": "1.0.0",
+  "description": "An object oriented JSON ajax request service.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "./node_modules/.bin/tslint --project tsconfig.json --config tslint.json",
+    "test:unit": "nyc mocha src/**/*.unit.test.ts --recursive --require ts-node/register --require source-map-support/register",
+    "test:integration": "nyc mocha src/**/*.integration.test.ts --recursive --require ts-node/register --require source-map-support/register",
+    "test": "nyc mocha src/**/*.test.ts --recursive --require ts-node/register --require source-map-support/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmaximilian/jet-pack.git"
+  },
+  "keywords": [
+    "bmaximilian",
+    "request",
+    "service",
+    "jet",
+    "pack"
+  ],
+  "author": "Maximilian Beck <contact@maximilianbeck.de> (maximilianbeck.de)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bmaximilian/jet-pack/issues"
+  },
+  "homepage": "https://github.com/bmaximilian/jet-pack#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.3",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.0",
+    "prettier": "^1.17.0",
+    "source-map-support": "^0.5.12",
+    "ts-node": "^8.1.0",
+    "tslint": "^5.16.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-jsdoc-rules": "^0.2.0",
+    "tslint-no-circular-imports": "^0.6.2",
+    "tslint-no-unused-expression-chai": "^0.1.4",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^3.4.5"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "per-file": true,
+    "lines": 80,
+    "statements": 80,
+    "functions": 60,
+    "branches": 90,
+    "reporter": [
+      "lcov",
+      "text-summary",
+      "html"
+    ],
+    "include": [
+      "src/**/*.test.ts"
+    ],
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "dist",
+      "src/index.*"
+    ],
+    "cache": true,
+    "all": false,
+    "report-dir": "./coverage"
+  }
+}

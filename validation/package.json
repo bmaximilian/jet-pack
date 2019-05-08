@@ -1,0 +1,29 @@
+{
+  "name": "utils",
+  "version": "1.0.0",
+  "description": "A wrapper/supporter for indicative validation and some helpers for it.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmaximilian/jet-pack.git"
+  },
+  "keywords": [
+    "bmaximilian",
+    "indicative",
+    "utils",
+    "validation",
+    "helper",
+    "jet",
+    "pack"
+  ],
+  "author": "Maximilian Beck <contact@maximilianbeck.de> (maximilianbeck.de)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bmaximilian/jet-pack/issues"
+  },
+  "homepage": "https://github.com/bmaximilian/jet-pack#readme"
+}
