@@ -41,11 +41,9 @@ build_request:
 
 publish_request:
     stage: deploy
-    only:
+    # only:
         # - tags
-        - triggers
-    except:
-        - branches
+        # - triggers
     script:
         - cd request
         - ls -la
