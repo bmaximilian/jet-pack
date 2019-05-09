@@ -62,9 +62,12 @@ build_request:
 publish_request:
   stage: deploy
   only:
-    - tags
     - triggers
   except:
     - branches
   script:
     - cd request
+    - ls -la
+    - ls -la dist
+    - cat dist/index.js
+    - cat dist/index.d.ts
