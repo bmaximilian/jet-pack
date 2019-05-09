@@ -16,9 +16,8 @@ gitlabCiChanged=false
 for file in $files
 do
     if [[ "$file" == ".gitlab-ci.yml" ]]; then
-        gitlabCiChanged=true
+        git add ".gitlab-ci.yml"
+        git commit -m "Merged .gitlab-ci.yml updated"
+        git push
     fi
 done
-
-git add ".gitlab-ci.yml"
-git commit -m "Merged .gitlab-ci.yml updated"
