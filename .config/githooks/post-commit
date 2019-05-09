@@ -17,6 +17,6 @@ for file in $files
 do
     if [[ "$file" == ".gitlab-ci.yml" ]]; then
         git add ".gitlab-ci.yml"
-        git commit -m "Merged .gitlab-ci.yml updated"
+        git commit -m "automated: Merged .gitlab-ci.yml updated"
     fi
 done
