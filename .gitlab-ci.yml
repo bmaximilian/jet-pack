@@ -61,10 +61,6 @@ build_request:
     - npm run build
 publish_request:
   stage: deploy
-  only:
-    - triggers
-  except:
-    - branches
   script:
     - cd request
     - ls -la
