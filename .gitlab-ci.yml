@@ -1,69 +1,70 @@
 stages:
-    - install
-    - lint
-    - test
-    - deploy
-
+  - install
+  - lint
+  - test
+  - build
+  - deploy
 cache:
-    paths:
-        - react-filter/node_modules
-        - react-router/node_modules
-        - request/node_modules
-        - service-container/node_modules
-        - store/node_modules
-        - transform/node_modules
-        - utils/node_modules
-        - validation/node_modules
+  paths:
+    - react-filter/node_modules
+    - react-filter/dist
+    - react-router/node_modules
+    - react-router/dist
+    - request/node_modules
+    - request/dist
+    - service-container/node_modules
+    - service-container/dist
+    - store/node_modules
+    - store/dist
+    - transform/node_modules
+    - transform/dist
+    - utils/node_modules
+    - utils/dist
+    - validation/node_modules
+    - validation/dist
 variables:
-    NODE_ENV: "production"
-    CI: "true"
-image: node:8.16
-
-## Install all the development sources
-install:react-filter:
-    stage: install
-    script:
-        - cd react-filter
-        - NODE_ENV=development npm install
-
-install:react-router:
-    stage: install
-    script:
-        - cd react-router
-        - NODE_ENV=development npm install
-
-install:request:
-    stage: install
-    script:
-        - cd request
-        - NODE_ENV=development npm install
-
-install:service-container:
-    stage: install
-    script:
-        - cd service-container
-        - NODE_ENV=development npm install
-
-install:store:
-    stage: install
-    script:
-        - cd store
-        - NODE_ENV=development npm install
-
-install:transform:
-    stage: install
-    script:
-        - cd transform
-        - NODE_ENV=development npm install
-
-install:utils:
-    stage: install
-    script:
-        - cd utils
-        - NODE_ENV=development npm install
-
-install:validation:
-    stage: install
-    script:
-        - cd validation
-        - NODE_ENV=development npm install
+  NODE_ENV: production
+  CI: 'true'
+image: 'node:8.16'
+install_request:
+  stage: install
+  script:
+    - cd request
+    - NODE_ENV=development npm install
+lint_request:
+  stage: lint
+  script:
+    - cd request
+    - npm run lint
+test_node-8_request:
+  stage: test
+  image: 'node:8'
+  script:
+    - cd request
+    - npm test
+test_node-6_request:
+  stage: test
+  image: 'node:6'
+  script:
+    - cd request
+    - npm test
+test_node-10_request:
+  stage: test
+  image: 'node:10'
+  script:
+    - cd request
+    - npm test
+build_request:
+  stage: build
+  script:
+    - cd request
+    - npm run build
+publish_request:
+  stage: deploy
+  only:
+    - tags
+    - triggers
+  except:
+    - branches
+  script:
+    - cd request
