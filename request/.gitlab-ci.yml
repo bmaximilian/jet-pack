@@ -1,0 +1,50 @@
+
+## Install all the development sources
+install_request:
+    stage: install
+    script:
+        - cd request
+        - NODE_ENV=development npm install
+
+lint_request:
+    stage: lint
+    script:
+        - cd request
+        - npm run lint
+
+test_node-8_request:
+    stage: test
+    image: node:8
+    script:
+        - cd request
+        - npm test
+
+test_node-6_request:
+    stage: test
+    image: node:6
+    script:
+        - cd request
+        - npm test
+
+test_node-10_request:
+    stage: test
+    image: node:10
+    script:
+        - cd request
+        - npm test
+
+build_request:
+    stage: build
+    script:
+        - cd request
+        - npm run build
+
+publish_request:
+    stage: deploy
+    only:
+        - tags
+        - triggers
+    except:
+        - branches
+    script:
+        - cd request

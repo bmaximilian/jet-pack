@@ -1,0 +1,28 @@
+{
+  "scripts": {
+    "postinstall": "nodexec postinstall"
+  },
+  "description": "A bunch of utilities.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmaximilian/jet-pack.git"
+  },
+  "dependencies": {
+    "@alexlafroscia/yaml-merge": "^1.0.4",
+    "chalk": "^2.4.2",
+    "nodexec": "0.9.0"
+  },
+  "modules": [
+    "request"
+  ],
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-plugin-compat": "^3.1.1",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1"
+  }
+}

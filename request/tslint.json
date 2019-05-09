@@ -119,9 +119,10 @@
       true,
       "check-multiline-start"
     ],
-    "jsdoc-require": true
+    "compat/compat": ["error", "defaults, not ie < 11"]
   },
   "rulesDirectory": [
-    "node_modules/tslint-eslint-rules/dist/rules"
+    "node_modules/tslint-eslint-rules/dist/rules",
+    "node_modules/eslint-plugin-compat/lib/rules"
   ]
 }

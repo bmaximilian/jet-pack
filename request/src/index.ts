@@ -4,3 +4,4 @@
  * @author Maximilian Beck <maximilian.beck@wtl.de>
  */
 
+export { add } from './nested/functions/add/add';

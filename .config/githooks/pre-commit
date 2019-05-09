@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cd "$(dirname "$0")"
+cd ../..
+# path is now project root
+
+# Create the gitlab ci file
+npx nodexec create:gitlab-ci
