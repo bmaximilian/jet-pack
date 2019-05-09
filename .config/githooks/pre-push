@@ -3,21 +3,4 @@
 cd "$(dirname "$0")"
 cd ../..
 # path is now project root
-
-# Create the gitlab ci file
-npx nodexec create:gitlab-ci
-
-git update-index -q --refresh
-CHANGED=$(git diff-index --name-only HEAD --)
-
-files=$(echo $CHANGED | tr " " "\n")
-
-gitlabCiChanged=false
-for file in $files
-do
-    if [[ "$file" == ".gitlab-ci.yml" ]]; then
-        git add ".gitlab-ci.yml"
-        git commit -m "Merged .gitlab-ci.yml updated"
-        git push
-    fi
-done
+# path is now project root

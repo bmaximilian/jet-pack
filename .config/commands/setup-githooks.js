@@ -18,6 +18,7 @@ function setupGithooks(options, config, command) {
     const hooks = [
         'pre-push',
         'pre-commit',
+        'post-commit',
     ];
 
     const srcPath = '.config/githooks';
