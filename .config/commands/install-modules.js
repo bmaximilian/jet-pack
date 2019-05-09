@@ -14,9 +14,9 @@ const packageJson = require('../../package');
  */
 function installModules(options, config, command) {
     packageJson.modules.forEach((m) => {
-        chalk.white(`Installing module ${m}`);
+        console.log(chalk.white(`Installing module ${m}`));
         exec(`cd ${resolvePathRelativeToProjectDir(m)} && npm install`, () => {
-            chalk.green(`Finished installing module ${m}`);
+            console.log(chalk.green(`Finished installing module ${m}`));
         });
     });
 }
