@@ -1,0 +1,48 @@
+
+## Install all the development sources
+install_store:
+    stage: install
+    script:
+        - cd store
+        - NODE_ENV=development npm install
+
+lint_store:
+    stage: lint
+    script:
+        - cd store
+        - npm run lint
+
+test_node-8_store:
+    stage: test
+    image: node:8
+    script:
+        - cd store
+        - npm test
+
+test_node-6_store:
+    stage: test
+    image: node:6
+    script:
+        - cd store
+        - npm test
+
+test_node-10_store:
+    stage: test
+    image: node:10
+    script:
+        - cd store
+        - npm test
+
+build_store:
+    stage: build
+    script:
+        - cd store
+        - npm run build
+
+publish_store:
+    stage: deploy
+    only:
+        - tags
+    script:
+        - cd store
+        - npx nodexec publish:conditionally

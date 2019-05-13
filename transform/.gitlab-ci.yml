@@ -1,0 +1,48 @@
+
+## Install all the development sources
+install_transform:
+    stage: install
+    script:
+        - cd transform
+        - NODE_ENV=development npm install
+
+lint_transform:
+    stage: lint
+    script:
+        - cd transform
+        - npm run lint
+
+test_node-8_transform:
+    stage: test
+    image: node:8
+    script:
+        - cd transform
+        - npm test
+
+test_node-6_transform:
+    stage: test
+    image: node:6
+    script:
+        - cd transform
+        - npm test
+
+test_node-10_transform:
+    stage: test
+    image: node:10
+    script:
+        - cd transform
+        - npm test
+
+build_transform:
+    stage: build
+    script:
+        - cd transform
+        - npm run build
+
+publish_transform:
+    stage: deploy
+    only:
+        - tags
+    script:
+        - cd transform
+        - npx nodexec publish:conditionally

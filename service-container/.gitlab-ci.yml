@@ -1,0 +1,48 @@
+
+## Install all the development sources
+install_service-container:
+    stage: install
+    script:
+        - cd service-container
+        - NODE_ENV=development npm install
+
+lint_service-container:
+    stage: lint
+    script:
+        - cd service-container
+        - npm run lint
+
+test_node-8_service-container:
+    stage: test
+    image: node:8
+    script:
+        - cd service-container
+        - npm test
+
+test_node-6_service-container:
+    stage: test
+    image: node:6
+    script:
+        - cd service-container
+        - npm test
+
+test_node-10_service-container:
+    stage: test
+    image: node:10
+    script:
+        - cd service-container
+        - npm test
+
+build_service-container:
+    stage: build
+    script:
+        - cd service-container
+        - npm run build
+
+publish_service-container:
+    stage: deploy
+    only:
+        - tags
+    script:
+        - cd service-container
+        - npx nodexec publish:conditionally

@@ -18,7 +18,14 @@
     "simple-git": "^1.113.0"
   },
   "modules": [
-    "request"
+    "react-filter",
+    "react-router",
+    "request",
+    "service-container",
+    "store",
+    "transform",
+    "utils",
+    "validation"
   ],
   "devDependencies": {
     "babel-eslint": "^10.0.1",

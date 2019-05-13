@@ -1,0 +1,48 @@
+
+## Install all the development sources
+install_react-filter:
+    stage: install
+    script:
+        - cd react-filter
+        - NODE_ENV=development npm install
+
+lint_react-filter:
+    stage: lint
+    script:
+        - cd react-filter
+        - npm run lint
+
+test_node-8_react-filter:
+    stage: test
+    image: node:8
+    script:
+        - cd react-filter
+        - npm test
+
+test_node-6_react-filter:
+    stage: test
+    image: node:6
+    script:
+        - cd react-filter
+        - npm test
+
+test_node-10_react-filter:
+    stage: test
+    image: node:10
+    script:
+        - cd react-filter
+        - npm test
+
+build_react-filter:
+    stage: build
+    script:
+        - cd react-filter
+        - npm run build
+
+publish_react-filter:
+    stage: deploy
+    only:
+        - tags
+    script:
+        - cd react-filter
+        - npx nodexec publish:conditionally

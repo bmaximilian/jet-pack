@@ -1,0 +1,48 @@
+
+## Install all the development sources
+install_react-router:
+    stage: install
+    script:
+        - cd react-router
+        - NODE_ENV=development npm install
+
+lint_react-router:
+    stage: lint
+    script:
+        - cd react-router
+        - npm run lint
+
+test_node-8_react-router:
+    stage: test
+    image: node:8
+    script:
+        - cd react-router
+        - npm test
+
+test_node-6_react-router:
+    stage: test
+    image: node:6
+    script:
+        - cd react-router
+        - npm test
+
+test_node-10_react-router:
+    stage: test
+    image: node:10
+    script:
+        - cd react-router
+        - npm test
+
+build_react-router:
+    stage: build
+    script:
+        - cd react-router
+        - npm run build
+
+publish_react-router:
+    stage: deploy
+    only:
+        - tags
+    script:
+        - cd react-router
+        - npx nodexec publish:conditionally

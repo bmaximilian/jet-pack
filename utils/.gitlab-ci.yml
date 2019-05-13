@@ -1,0 +1,48 @@
+
+## Install all the development sources
+install_utils:
+    stage: install
+    script:
+        - cd utils
+        - NODE_ENV=development npm install
+
+lint_utils:
+    stage: lint
+    script:
+        - cd utils
+        - npm run lint
+
+test_node-8_utils:
+    stage: test
+    image: node:8
+    script:
+        - cd utils
+        - npm test
+
+test_node-6_utils:
+    stage: test
+    image: node:6
+    script:
+        - cd utils
+        - npm test
+
+test_node-10_utils:
+    stage: test
+    image: node:10
+    script:
+        - cd utils
+        - npm test
+
+build_utils:
+    stage: build
+    script:
+        - cd utils
+        - npm run build
+
+publish_utils:
+    stage: deploy
+    only:
+        - tags
+    script:
+        - cd utils
+        - npx nodexec publish:conditionally
