@@ -26,6 +26,86 @@ variables:
   NODE_ENV: production
   CI: 'true'
 image: 'node:8.16'
+install_react-filter:
+  stage: install
+  script:
+    - cd react-filter
+    - NODE_ENV=development npm install
+lint_react-filter:
+  stage: lint
+  script:
+    - cd react-filter
+    - npm run lint
+test_node-8_react-filter:
+  stage: test
+  image: 'node:8'
+  script:
+    - cd react-filter
+    - npm test
+test_node-6_react-filter:
+  stage: test
+  image: 'node:6'
+  script:
+    - cd react-filter
+    - npm test
+test_node-10_react-filter:
+  stage: test
+  image: 'node:10'
+  script:
+    - cd react-filter
+    - npm test
+build_react-filter:
+  stage: build
+  script:
+    - cd react-filter
+    - npm run build
+publish_react-filter:
+  stage: deploy
+  only:
+    - tags
+  script:
+    - cd react-filter
+    - 'npx nodexec publish:conditionally'
+install_react-router:
+  stage: install
+  script:
+    - cd react-router
+    - NODE_ENV=development npm install
+lint_react-router:
+  stage: lint
+  script:
+    - cd react-router
+    - npm run lint
+test_node-8_react-router:
+  stage: test
+  image: 'node:8'
+  script:
+    - cd react-router
+    - npm test
+test_node-6_react-router:
+  stage: test
+  image: 'node:6'
+  script:
+    - cd react-router
+    - npm test
+test_node-10_react-router:
+  stage: test
+  image: 'node:10'
+  script:
+    - cd react-router
+    - npm test
+build_react-router:
+  stage: build
+  script:
+    - cd react-router
+    - npm run build
+publish_react-router:
+  stage: deploy
+  only:
+    - tags
+  script:
+    - cd react-router
+    - 'npx nodexec publish:conditionally'
 install_request:
   stage: install
   script:
@@ -65,4 +145,204 @@ publish_request:
     - tags
   script:
     - cd request
+    - 'npx nodexec publish:conditionally'
+install_service-container:
+  stage: install
+  script:
+    - cd service-container
+    - NODE_ENV=development npm install
+lint_service-container:
+  stage: lint
+  script:
+    - cd service-container
+    - npm run lint
+test_node-8_service-container:
+  stage: test
+  image: 'node:8'
+  script:
+    - cd service-container
+    - npm test
+test_node-6_service-container:
+  stage: test
+  image: 'node:6'
+  script:
+    - cd service-container
+    - npm test
+test_node-10_service-container:
+  stage: test
+  image: 'node:10'
+  script:
+    - cd service-container
+    - npm test
+build_service-container:
+  stage: build
+  script:
+    - cd service-container
+    - npm run build
+publish_service-container:
+  stage: deploy
+  only:
+    - tags
+  script:
+    - cd service-container
+    - 'npx nodexec publish:conditionally'
+install_store:
+  stage: install
+  script:
+    - cd store
+    - NODE_ENV=development npm install
+lint_store:
+  stage: lint
+  script:
+    - cd store
+    - npm run lint
+test_node-8_store:
+  stage: test
+  image: 'node:8'
+  script:
+    - cd store
+    - npm test
+test_node-6_store:
+  stage: test
+  image: 'node:6'
+  script:
+    - cd store
+    - npm test
+test_node-10_store:
+  stage: test
+  image: 'node:10'
+  script:
+    - cd store
+    - npm test
+build_store:
+  stage: build
+  script:
+    - cd store
+    - npm run build
+publish_store:
+  stage: deploy
+  only:
+    - tags
+  script:
+    - cd store
+    - 'npx nodexec publish:conditionally'
+install_transform:
+  stage: install
+  script:
+    - cd transform
+    - NODE_ENV=development npm install
+lint_transform:
+  stage: lint
+  script:
+    - cd transform
+    - npm run lint
+test_node-8_transform:
+  stage: test
+  image: 'node:8'
+  script:
+    - cd transform
+    - npm test
+test_node-6_transform:
+  stage: test
+  image: 'node:6'
+  script:
+    - cd transform
+    - npm test
+test_node-10_transform:
+  stage: test
+  image: 'node:10'
+  script:
+    - cd transform
+    - npm test
+build_transform:
+  stage: build
+  script:
+    - cd transform
+    - npm run build
+publish_transform:
+  stage: deploy
+  only:
+    - tags
+  script:
+    - cd transform
+    - 'npx nodexec publish:conditionally'
+install_utils:
+  stage: install
+  script:
+    - cd utils
+    - NODE_ENV=development npm install
+lint_utils:
+  stage: lint
+  script:
+    - cd utils
+    - npm run lint
+test_node-8_utils:
+  stage: test
+  image: 'node:8'
+  script:
+    - cd utils
+    - npm test
+test_node-6_utils:
+  stage: test
+  image: 'node:6'
+  script:
+    - cd utils
+    - npm test
+test_node-10_utils:
+  stage: test
+  image: 'node:10'
+  script:
+    - cd utils
+    - npm test
+build_utils:
+  stage: build
+  script:
+    - cd utils
+    - npm run build
+publish_utils:
+  stage: deploy
+  only:
+    - tags
+  script:
+    - cd utils
+    - 'npx nodexec publish:conditionally'
+install_validation:
+  stage: install
+  script:
+    - cd validation
+    - NODE_ENV=development npm install
+lint_validation:
+  stage: lint
+  script:
+    - cd validation
+    - npm run lint
+test_node-8_validation:
+  stage: test
+  image: 'node:8'
+  script:
+    - cd validation
+    - npm test
+test_node-6_validation:
+  stage: test
+  image: 'node:6'
+  script:
+    - cd validation
+    - npm test
+test_node-10_validation:
+  stage: test
+  image: 'node:10'
+  script:
+    - cd validation
+    - npm test
+build_validation:
+  stage: build
+  script:
+    - cd validation
+    - npm run build
+publish_validation:
+  stage: deploy
+  only:
+    - tags
+  script:
+    - cd validation
     - 'npx nodexec publish:conditionally'
