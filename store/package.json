@@ -1,7 +1,7 @@
 {
   "name": "store",
   "version": "1.0.0",
-  "description": "A wrapper for the redux store to use actions in an object oriented manner.",
+  "description": "A wrapper for the redux store to use actions in an object oriented way.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
