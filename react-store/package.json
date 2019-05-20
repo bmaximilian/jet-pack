@@ -1,10 +1,11 @@
 {
-  "name": "store",
+  "name": "react-store",
   "version": "1.0.0",
-  "description": "A wrapper for the redux store to use actions in an object oriented way.",
+  "description": "React connector to the jet-pack store service.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "prepare": "mkdir -p node_modules/@jet-pack && ln -s ../store node_modules/@jet-pack/store",
     "build": "tsc",
     "lint": "./node_modules/.bin/tslint --project tsconfig.json --config tslint.json",
     "test:unit": "nyc mocha src/**/*.unit.test.ts --recursive --require ts-node/register --require source-map-support/register",
@@ -17,9 +18,10 @@
   },
   "keywords": [
     "bmaximilian",
-    "redux",
     "store",
-    "service",
+    "react",
+    "connector",
+    "helper",
     "jet",
     "pack"
   ],
@@ -32,17 +34,21 @@
     "last 1 versions",
     "not ie <= 10"
   ],
-  "homepage": "https://github.com/bmaximilian/jet-pack/blob/master/store/README.md",
+  "homepage": "https://github.com/bmaximilian/jet-pack/blob/master/react-store/README.md",
   "devDependencies": {
     "@types/chai": "^4.1.7",
-    "@types/es6-promise": "^3.3.0",
     "@types/mocha": "^5.2.6",
+    "@types/react": "16.8.12",
+    "@types/react-redux": "^7.0.6",
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
     "eslint-plugin-compat": "^3.1.1",
     "mocha": "^6.1.4",
     "nyc": "^14.1.0",
     "prettier": "^1.17.0",
+    "react": "^16.8.6",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
     "source-map-support": "^0.5.12",
     "ts-node": "^8.1.0",
     "tslint": "^5.16.0",
@@ -54,6 +60,12 @@
     "tslint-no-unused-expression-chai": "^0.1.4",
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.4.5"
+  },
+  "peerDependencies": {
+    "@jet-pack/store": "^1.0.0",
+    "react": "^16.8.6",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1"
   },
   "nyc": {
     "check-coverage": true,
@@ -81,15 +93,5 @@
     "cache": true,
     "all": false,
     "report-dir": "./coverage"
-  },
-  "dependencies": {
-    "@types/lodash": "^4.14.130",
-    "es6-promise": "^4.2.6",
-    "lodash": "^4.17.11",
-    "redux": "^4.0.1",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-observable": "^1.1.0",
-    "redux-thunk": "^2.3.0",
-    "rxjs": "^6.4.0"
   }
 }

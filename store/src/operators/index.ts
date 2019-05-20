@@ -4,6 +4,5 @@
  * @author Maximilian Beck <maximilian.beck@wtl.de>
  */
 
-export * from './StoreService';
-export * from './ReduxAction';
-export * from './util';
+export * from './ofType';
+export * from './bag';
