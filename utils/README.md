@@ -1,4 +1,4 @@
-# bmax-utils
+# Jet Pack Utils
 
 [![Build Status](https://gitlab.com/bmaximilian/jet-pack/badges/master/pipeline.svg)](https://travis-ci.org/bmaximilian/bmax-utils)
 [![Coverage Status](https://gitlab.com/bmaximilian/jet-pack/badges/master/coverage.svg)](https://gitlab.com/bmaximilian/jet-pack/pipelines)
@@ -63,7 +63,7 @@ Converts a camel case string to low dash separated string if a string is passed 
 If an object is passed to the function, it will convert its camelCase keys to low dash separated keys.
 
 ```javascript
-import { camelCaseToLowDash } from 'bmax-utils';
+import { camelCaseToLowDash } from '@jet-pack/utils';
 
 camelCaseToLowDash('halloWelt');
 // 'hallo_welt'
@@ -78,7 +78,7 @@ camelCaseToLowDash({ halloWelt: 'halloWelt' });
 Generates a valid rgba() css string from a hex, rgb or rgba color with the opacity as second parameter.
 
 ```javascript
-import { generateOpacity } from 'bmax-utils';
+import { generateOpacity } from '@jet-pack/utils';
 
 generateOpacity('rgb(0, 51, 255)', 0.6);
 // 'rgba(0, 51, 255, 0.6)'
@@ -98,7 +98,7 @@ Generates trigger of dispatched actions to identify which component triggered an
 A simple but useful function for redux applications.
 
 ```javascript
-import { generateTrigger } from 'bmax-utils';
+import { generateTrigger } from '@jet-pack/utils';
 
 const trigger = generateTrigger('utils/helper/tests');
 
@@ -164,7 +164,7 @@ Will dispatch:
 ]
  */
 
-import { getErrorsFromAjaxOrValidationResponse } from 'bmax-utils';
+import { getErrorsFromAjaxOrValidationResponse } from '@jet-pack/utils';
 
 /*
 Options can be:
@@ -198,7 +198,7 @@ Will always return:
 Converts 6 digit long hex color to rgb. 
 
 ```javascript
-import { hexToRgb } from 'bmax-utils';
+import { hexToRgb } from '@jet-pack/utils';
 
 hexToRgb('#0033ff');
 // { r: 0, g: 51, b: 255 }
@@ -211,7 +211,7 @@ hexToRgb('#0033ff');
 Checks if a value is true-ish
 
 ```javascript
-import { isTrueIsh } from 'bmax-utils';
+import { isTrueIsh } from '@jet-pack/utils';
 
 isTrueIsh('true');
 // true
@@ -233,7 +233,7 @@ Converts a low dash separated string to camel case string if a string is passed 
 If an object is passed to the function, it will convert its low dash separated keys to camelCase keys.
 
 ```javascript
-import { lowDashToCamelCase } from 'bmax-utils';
+import { lowDashToCamelCase } from '@jet-pack/utils';
 
 lowDashToCamelCase('hallo_welt');
 // 'halloWelt'
@@ -252,7 +252,7 @@ Helper functions for working with objects
 Returns an Object without the forbidden properties
 
 ```javascript
-import { blacklist } from 'bmax-utils';
+import { blacklist } from '@jet-pack/utils';
 
 blacklist(
     {
@@ -273,7 +273,7 @@ blacklist(
 Defines a function that filters an object to contain no keys matching the strings in the submitted list
 
 ```javascript
-import { defineBlacklist } from 'bmax-utils';
+import { defineBlacklist } from '@jet-pack/utils';
 
 const blacklist = defineBlacklist(['foo', 'bar']);
 
@@ -297,7 +297,7 @@ blacklist({
 Defines a function that filters an object to contain only keys matching the strings in the submitted list
 
 ```javascript
-import { defineWhitelist } from 'bmax-utils';
+import { defineWhitelist } from '@jet-pack/utils';
 
 const whitelist = defineWhitelist(['foo', 'bar']);
 
@@ -322,7 +322,7 @@ whitelist({
 Filters an object and returns a new object whose properties are the keys of the source object with the filtered prop as value
 
 ```javascript
-import { filterForProperty } from 'bmax-utils';
+import { filterForProperty } from '@jet-pack/utils';
 
 filterForProperty({
     name: {
@@ -355,7 +355,7 @@ Will return:
 Checks if an object has keys that match to the RegExp
 
 ```javascript
-import { hasMatchingKeys } from 'bmax-utils';
+import { hasMatchingKeys } from '@jet-pack/utils';
 
 hasMatchingKeys({
     test: 1,
@@ -377,7 +377,7 @@ hasMatchingKeys({
 Returns an Object that contains only the allowed properties
 
 ```javascript
-import { whitelist } from 'bmax-utils';
+import { whitelist } from '@jet-pack/utils';
 
 whitelist(
     {
@@ -403,7 +403,7 @@ Helper functions for working with strings
 Formats json params to GET HTTP parameters
 
 ```javascript
-import { formatGetUrlParameters } from 'bmax-utils';
+import { formatGetUrlParameters } from '@jet-pack/utils';
 
 formatGetUrlParameters({
     number: 1234,
@@ -419,7 +419,7 @@ Replaces a placeholder string
 >  Placeholders look like: {key}
 
 ```javascript
-import { replacePlaceholder } from 'bmax-utils';
+import { replacePlaceholder } from '@jet-pack/utils';
 
 replacePlaceholder('The id is: {id}', { id: 1 });
 // 'The id is: 1'
