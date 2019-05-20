@@ -1,7 +1,6 @@
-/**
- * Created on 2019-05-08.
- *
- * @author Maximilian Beck <maximilian.beck@wtl.de>
- */
+import { GlobalServiceContainer, ServiceContainer } from './serviceContainer';
 
-export { add } from './nested/functions/add/add';
+export {
+    ServiceContainer,
+    GlobalServiceContainer,
+};
