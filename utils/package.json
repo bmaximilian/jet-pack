@@ -9,7 +9,7 @@
     "lint": "./node_modules/.bin/tslint --project tsconfig.json --config tslint.json",
     "test:unit": "nyc mocha src/**/*.unit.test.ts --recursive --require ts-node/register --require source-map-support/register",
     "test:integration": "nyc mocha src/**/*.integration.test.ts --recursive --require ts-node/register --require source-map-support/register",
-    "test": "nyc mocha src/**/*.test.ts --recursive --require ts-node/register --require source-map-support/register"
+    "test": "nyc mocha src/**/*.test.ts src/**/*.spec.ts --recursive --require ts-node/register --require source-map-support/register"
   },
   "repository": {
     "type": "git",
@@ -55,6 +55,10 @@
     "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.4.5"
   },
+  "dependencies": {
+    "@types/lodash": "^4.14.107",
+    "lodash": "^4.17.5"
+  },
   "nyc": {
     "check-coverage": true,
     "per-file": true,
@@ -68,7 +72,7 @@
       "html"
     ],
     "include": [
-      "src/**/*.test.ts"
+      "src/**/*.spec.ts"
     ],
     "extension": [
       ".ts",
