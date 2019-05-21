@@ -4,5 +4,6 @@
  * @author Maximilian Beck <maximilian.beck@wtl.de>
  */
 
+export * from './finder';
 export * from './hoc/withLocalSearch';
 export * from './hoc/withAttachedLocalSearch';
