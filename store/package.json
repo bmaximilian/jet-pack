@@ -1,5 +1,5 @@
 {
-  "name": "store",
+  "name": "@jet-pack/store",
   "version": "1.0.0",
   "description": "A wrapper for the redux store to use actions in an object oriented way.",
   "main": "dist/index.js",

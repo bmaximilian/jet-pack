@@ -1,5 +1,5 @@
 {
-  "name": "react-filter",
+  "name": "@jet-pack/react-filter",
   "version": "1.0.0",
   "description": "Search/Filter data coming from a react prop",
   "main": "dist/index.js",

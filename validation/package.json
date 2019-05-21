@@ -1,5 +1,5 @@
 {
-  "name": "utils",
+  "name": "@jet-pack/validation",
   "version": "1.0.0",
   "description": "A wrapper/supporter for indicative validation and some helpers for it.",
   "main": "dist/index.js",

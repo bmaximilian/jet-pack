@@ -1,5 +1,5 @@
 {
-  "name": "utils",
+  "name": "@jet-pack/utils",
   "version": "1.0.0",
   "description": "A collection of utility and helper functions.",
   "main": "dist/index.js",

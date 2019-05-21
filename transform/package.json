@@ -1,5 +1,5 @@
 {
-  "name": "transform",
+  "name": "@jet-pack/transform",
   "version": "1.0.0",
   "description": "Transformer classes and helpers to transform data structures.",
   "main": "dist/index.js",

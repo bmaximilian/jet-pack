@@ -1,5 +1,5 @@
 {
-  "name": "service-container",
+  "name": "@jet-pack/service-container",
   "version": "1.0.0",
   "description": "Service containers to store services and construct them.",
   "main": "dist/index.js",

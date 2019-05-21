@@ -1,10 +1,11 @@
 {
-  "name": "request",
+  "name": "@jet-pack/request",
   "version": "1.0.0",
   "description": "An object oriented JSON ajax request service.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "prepare": "npm ln ../utils",
     "build": "tsc",
     "lint": "./node_modules/.bin/tslint --project tsconfig.json --config tslint.json",
     "test:unit": "nyc mocha src/**/*.unit.test.ts --recursive --require ts-node/register --require source-map-support/register",
@@ -34,7 +35,9 @@
   "homepage": "https://github.com/bmaximilian/jet-pack/blob/master/request/README.md",
   "devDependencies": {
     "@types/chai": "^4.1.7",
+    "@types/lodash": "^4.14.130",
     "@types/mocha": "^5.2.6",
+    "@types/qs": "^6.5.3",
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
     "eslint-plugin-compat": "^3.1.1",
@@ -79,5 +82,13 @@
     "cache": true,
     "all": false,
     "report-dir": "./coverage"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "qs": "^6.7.0",
+    "rxjs": "^6.5.2"
+  },
+  "peerDependencies": {
+    "@jet-pack/utils": "^1.0.0"
   }
 }
