@@ -23,10 +23,10 @@
       true,
       "array"
     ],
-    "import-name": [
-      true,
-      {}
-    ],
+    "import-name": [true, {
+      "react": "React",
+      "fuseJs": "Fuse"
+    }],
     "variable-name": [
       true,
       "ban-keywords",
