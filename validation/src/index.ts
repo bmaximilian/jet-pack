@@ -4,4 +4,6 @@
  * @author Maximilian Beck <maximilian.beck@wtl.de>
  */
 
-export { add } from './nested/functions/add/add';
+export * from './validator';
+export * from './operators';
+export { ValidationRequest, IValidationRules, IValidationMessages } from './base/ValidationRequest';

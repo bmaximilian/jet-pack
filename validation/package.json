@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "prepare": "npm ln ../utils",
     "build": "tsc",
     "lint": "./node_modules/.bin/tslint --project tsconfig.json --config tslint.json",
     "test:unit": "nyc mocha src/**/*.unit.test.ts --recursive --require ts-node/register --require source-map-support/register",
@@ -36,6 +37,7 @@
   "homepage": "https://github.com/bmaximilian/jet-pack/blob/master/validation/README.md",
   "devDependencies": {
     "@types/chai": "^4.1.7",
+    "@types/lodash": "^4.14.130",
     "@types/mocha": "^5.2.6",
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
@@ -81,5 +83,13 @@
     "cache": true,
     "all": false,
     "report-dir": "./coverage"
+  },
+  "dependencies": {
+    "indicative": "^5.0.8",
+    "lodash": "^4.17.11",
+    "rxjs": "^6.5.2"
+  },
+  "peerDependencies": {
+    "@jet-pack/utils": "^1.0.0"
   }
 }
