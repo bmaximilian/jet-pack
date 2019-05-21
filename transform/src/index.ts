@@ -4,4 +4,5 @@
  * @author Maximilian Beck <maximilian.beck@wtl.de>
  */
 
-export { add } from './nested/functions/add/add';
+export { Transformer } from './base/Transformer';
+export * from './operators';
