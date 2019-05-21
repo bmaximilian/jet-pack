@@ -25,7 +25,7 @@ cache:
 variables:
   NODE_ENV: production
   CI: 'true'
-image: 'node:8.16'
+image: 'node:10.15.3'
 install_react-filter:
   stage: install
   script:
