@@ -4,4 +4,4 @@
  * @author Maximilian Beck <maximilian.beck@wtl.de>
  */
 
-export { withTransformedFrom } from './withTransformedFrom';
+export { withTransformedFrom } from './withTransformedFrom/withTransformedFrom';
