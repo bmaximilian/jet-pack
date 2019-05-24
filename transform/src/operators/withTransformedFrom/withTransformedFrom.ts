@@ -6,7 +6,7 @@
 
 import { forkJoin, Observable, of, OperatorFunction } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
-import { Transformer } from '../../index';
+import { Transformer } from '../../base/Transformer';
 
 /**
  * Transforms a second observable

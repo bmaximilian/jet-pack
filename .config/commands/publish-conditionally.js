@@ -64,7 +64,6 @@ function publishConditionally(options, config, command) {
 
         latestVersion(packageName)
         .then((response) => {
-            console.log(response);
             console.log(chalk.white(`Old version of package ${packageName}: `) + chalk.cyan(response));
 
             if (response !== modulePackageJson.version) {
