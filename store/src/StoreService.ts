@@ -4,7 +4,6 @@
  * @author Maximilian Beck <maximilian.beck@wtl.de>
  */
 
-import { Promise } from 'es6-promise'
 import {
     assign,
     cloneDeep,

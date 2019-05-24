@@ -36,6 +36,7 @@
   "homepage": "https://github.com/bmaximilian/jet-pack/blob/master/utils/README.md",
   "devDependencies": {
     "@types/chai": "^4.1.7",
+    "@types/lodash": "^4.14.107",
     "@types/mocha": "^5.2.6",
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
@@ -56,7 +57,6 @@
     "typescript": "^3.4.5"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.107",
     "lodash": "^4.17.11"
   },
   "nyc": {

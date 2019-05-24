@@ -35,7 +35,7 @@
   "homepage": "https://github.com/bmaximilian/jet-pack/blob/master/store/README.md",
   "devDependencies": {
     "@types/chai": "^4.1.7",
-    "@types/es6-promise": "^3.3.0",
+    "@types/lodash": "^4.14.130",
     "@types/mocha": "^5.2.6",
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
@@ -83,8 +83,6 @@
     "report-dir": "./coverage"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.130",
-    "es6-promise": "^4.2.6",
     "lodash": "^4.17.11",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",

@@ -37,6 +37,7 @@ build_react-filter:
     stage: build
     script:
         - cd react-filter
+        - npm run prepare
         - npm run build
 
 publish_react-filter:

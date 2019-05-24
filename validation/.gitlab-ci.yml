@@ -37,6 +37,7 @@ build_validation:
     stage: build
     script:
         - cd validation
+        - npm run prepare
         - npm run build
 
 publish_validation:
