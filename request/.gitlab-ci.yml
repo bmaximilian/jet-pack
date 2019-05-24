@@ -37,7 +37,7 @@ build_request:
     stage: build
     script:
         - cd request
-        -
+        - npm run prepare
         - npm run build
 
 publish_request:
