@@ -70,6 +70,10 @@ returns [
 
 ### RxJS Operators
 #### withTransformedFrom
+Passes the value of the main observable through the stream (but allows to create the transformer and the side-observable
+out of this value).
+Transforms the next emission of a observable and returns an array containing the value of the main observable
+and the transformed value of the side-observable to the stream of the main observable.
 
 ```typescript
 import { withTransformedFrom, Transformer } from '@jet-pack/transform';
