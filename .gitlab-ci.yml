@@ -58,6 +58,7 @@ build_react-filter:
   stage: build
   script:
     - cd react-filter
+    - npm run prepare
     - npm run build
 publish_react-filter:
   stage: deploy
@@ -138,6 +139,7 @@ build_request:
   stage: build
   script:
     - cd request
+    - null
     - npm run build
 publish_request:
   stage: deploy
@@ -338,6 +340,7 @@ build_validation:
   stage: build
   script:
     - cd validation
+    - npm run prepare
     - npm run build
 publish_validation:
   stage: deploy
