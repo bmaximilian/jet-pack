@@ -71,6 +71,10 @@ build_react-filter:
       - react-filter/node_modules
       - react-filter/dist
   script:
+    - cd utils
+    - NODE_ENV=development npm install
+    - npm run build
+    - cd ..
     - cd react-filter
     - npm run prepare
     - npm run build
@@ -254,6 +258,10 @@ build_react-store:
       - react-store/node_modules
       - react-store/dist
   script:
+    - cd store
+    - NODE_ENV=development npm install
+    - npm run build
+    - cd ..
     - cd react-store
     - npm run prepare
     - npm run build
@@ -346,6 +354,10 @@ build_request:
       - request/node_modules
       - request/dist
   script:
+    - cd utils
+    - NODE_ENV=development npm install
+    - npm run build
+    - cd ..
     - cd request
     - npm run prepare
     - npm run build
@@ -802,6 +814,10 @@ build_validation:
       - validation/node_modules
       - validation/dist
   script:
+    - cd utils
+    - NODE_ENV=development npm install
+    - npm run build
+    - cd ..
     - cd validation
     - npm run prepare
     - npm run build
