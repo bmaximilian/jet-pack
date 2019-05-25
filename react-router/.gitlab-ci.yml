@@ -3,6 +3,8 @@
 install_react-router:
     stage: install
     cache:
+        key: react-router-${CI_COMMIT_REF_SLUG}
+        policy: push
         paths:
             - react-router/node_modules
     script:
@@ -12,6 +14,8 @@ install_react-router:
 lint_react-router:
     stage: lint
     cache:
+        key: react-router-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - react-router/node_modules
     script:
@@ -22,6 +26,8 @@ test_node-8_react-router:
     stage: test
     image: node:8
     cache:
+        key: react-router-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - react-router/node_modules
     script:
@@ -32,6 +38,8 @@ test_node-6_react-router:
     stage: test
     image: node:6
     cache:
+        key: react-router-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - react-router/node_modules
     script:
@@ -42,6 +50,8 @@ test_node-10_react-router:
     stage: test
     image: node:10
     cache:
+        key: react-router-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - react-router/node_modules
     script:
@@ -51,6 +61,8 @@ test_node-10_react-router:
 build_react-router:
     stage: build
     cache:
+        key: react-router-${CI_COMMIT_REF_SLUG}
+        policy: pull-push
         paths:
             - react-router/node_modules
             - react-router/dist
@@ -63,6 +75,8 @@ publish_react-router:
     only:
         - tags
     cache:
+        key: react-router-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - react-router/node_modules
             - react-router/dist

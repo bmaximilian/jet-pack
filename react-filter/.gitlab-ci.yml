@@ -3,6 +3,8 @@
 install_react-filter:
     stage: install
     cache:
+        key: react-filter-${CI_COMMIT_REF_SLUG}
+        policy: push
         paths:
             - react-filter/node_modules
     script:
@@ -12,6 +14,8 @@ install_react-filter:
 lint_react-filter:
     stage: lint
     cache:
+        key: react-filter-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - react-filter/node_modules
     script:
@@ -22,6 +26,8 @@ test_node-8_react-filter:
     stage: test
     image: node:8
     cache:
+        key: react-filter-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - react-filter/node_modules
     script:
@@ -32,6 +38,8 @@ test_node-6_react-filter:
     stage: test
     image: node:6
     cache:
+        key: react-filter-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - react-filter/node_modules
     script:
@@ -42,6 +50,8 @@ test_node-10_react-filter:
     stage: test
     image: node:10
     cache:
+        key: react-filter-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - react-filter/node_modules
     script:
@@ -51,6 +61,7 @@ test_node-10_react-filter:
 build_react-filter:
     stage: build
     cache:
+        key: react-filter-${CI_COMMIT_REF_SLUG}
         paths:
             - react-filter/node_modules
             - react-filter/dist
@@ -64,6 +75,8 @@ publish_react-filter:
     only:
         - tags
     cache:
+        key: react-filter-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - react-filter/node_modules
             - react-filter/dist

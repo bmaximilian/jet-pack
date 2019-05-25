@@ -3,6 +3,8 @@
 install_validation:
     stage: install
     cache:
+        key: validation-${CI_COMMIT_REF_SLUG}
+        policy: push
         paths:
             - validation/node_modules
     script:
@@ -12,6 +14,8 @@ install_validation:
 lint_validation:
     stage: lint
     cache:
+        key: validation-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - validation/node_modules
     script:
@@ -22,6 +26,8 @@ test_node-8_validation:
     stage: test
     image: node:8
     cache:
+        key: validation-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - validation/node_modules
     script:
@@ -32,6 +38,8 @@ test_node-6_validation:
     stage: test
     image: node:6
     cache:
+        key: validation-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - validation/node_modules
     script:
@@ -42,6 +50,8 @@ test_node-10_validation:
     stage: test
     image: node:10
     cache:
+        key: validation-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - validation/node_modules
     script:
@@ -51,6 +61,8 @@ test_node-10_validation:
 build_validation:
     stage: build
     cache:
+        key: validation-${CI_COMMIT_REF_SLUG}
+        policy: pull-push
         paths:
             - validation/node_modules
             - validation/dist
@@ -64,6 +76,8 @@ publish_validation:
     only:
         - tags
     cache:
+        key: validation-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - validation/node_modules
             - validation/dist

@@ -3,6 +3,8 @@
 install_request:
     stage: install
     cache:
+        key: request-${CI_COMMIT_REF_SLUG}
+        policy: push
         paths:
             - request/node_modules
     script:
@@ -12,6 +14,8 @@ install_request:
 lint_request:
     stage: lint
     cache:
+        key: request-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - request/node_modules
     script:
@@ -22,6 +26,8 @@ test_node-8_request:
     stage: test
     image: node:8
     cache:
+        key: request-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - request/node_modules
     script:
@@ -32,6 +38,8 @@ test_node-6_request:
     stage: test
     image: node:6
     cache:
+        key: request-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - request/node_modules
     script:
@@ -42,6 +50,8 @@ test_node-10_request:
     stage: test
     image: node:10
     cache:
+        key: request-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - request/node_modules
     script:
@@ -51,6 +61,8 @@ test_node-10_request:
 build_request:
     stage: build
     cache:
+        key: request-${CI_COMMIT_REF_SLUG}
+        policy: pull-push
         paths:
             - request/node_modules
             - request/dist
@@ -64,6 +76,8 @@ publish_request:
     only:
         - tags
     cache:
+        key: request-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - request/node_modules
             - request/dist

@@ -3,6 +3,8 @@
 install_service-container:
     stage: install
     cache:
+        key: service-container-${CI_COMMIT_REF_SLUG}
+        policy: push
         paths:
             - service-container/node_modules
     script:
@@ -12,6 +14,8 @@ install_service-container:
 lint_service-container:
     stage: lint
     cache:
+        key: service-container-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - service-container/node_modules
     script:
@@ -22,6 +26,8 @@ test_node-8_service-container:
     stage: test
     image: node:8
     cache:
+        key: service-container-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - service-container/node_modules
     script:
@@ -32,6 +38,8 @@ test_node-6_service-container:
     stage: test
     image: node:6
     cache:
+        key: service-container-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - service-container/node_modules
     script:
@@ -42,6 +50,8 @@ test_node-10_service-container:
     stage: test
     image: node:10
     cache:
+        key: service-container-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - service-container/node_modules
     script:
@@ -51,6 +61,8 @@ test_node-10_service-container:
 build_service-container:
     stage: build
     cache:
+        key: service-container-${CI_COMMIT_REF_SLUG}
+        policy: pull-push
         paths:
             - service-container/node_modules
             - service-container/dist
@@ -63,6 +75,8 @@ publish_service-container:
     only:
         - tags
     cache:
+        key: service-container-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - service-container/node_modules
             - service-container/dist

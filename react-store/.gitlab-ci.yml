@@ -1,56 +1,68 @@
 
 ## Install all the development sources
-install_transform:
+install_react-store:
     stage: install
     cache:
+        key: react-store-${CI_COMMIT_REF_SLUG}
+        policy: push
         paths:
             - react-store/node_modules
     script:
         - cd react-store
         - NODE_ENV=development npm install
 
-lint_transform:
+lint_react-store:
     stage: lint
     cache:
+        key: react-store-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - react-store/node_modules
     script:
         - cd react-store
         - npm run lint
 
-test_node-8_transform:
+test_node-8_react-store:
     stage: test
     image: node:8
     cache:
+        key: react-store-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - react-store/node_modules
     script:
         - cd react-store
         - npm test
 
-test_node-6_transform:
+test_node-6_react-store:
     stage: test
     image: node:6
     cache:
+        key: react-store-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - react-store/node_modules
     script:
         - cd react-store
         - npm test
 
-test_node-10_transform:
+test_node-10_react-store:
     stage: test
     image: node:10
     cache:
+        key: react-store-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - react-store/node_modules
     script:
         - cd react-store
         - npm test
 
-build_transform:
+build_react-store:
     stage: build
     cache:
+        key: react-store-${CI_COMMIT_REF_SLUG}
+        policy: pull-push
         paths:
             - react-store/node_modules
             - react-store/dist
@@ -59,11 +71,13 @@ build_transform:
         - npm run prepare
         - npm run build
 
-publish_transform:
+publish_react-store:
     stage: deploy
     only:
         - tags
     cache:
+        key: react-store-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - react-store/node_modules
             - react-store/dist

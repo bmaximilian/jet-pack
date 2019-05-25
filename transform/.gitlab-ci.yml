@@ -3,6 +3,8 @@
 install_transform:
     stage: install
     cache:
+        key: transform-${CI_COMMIT_REF_SLUG}
+        policy: push
         paths:
             - transform/node_modules
     script:
@@ -12,6 +14,8 @@ install_transform:
 lint_transform:
     stage: lint
     cache:
+        key: transform-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - transform/node_modules
     script:
@@ -22,6 +26,8 @@ test_node-8_transform:
     stage: test
     image: node:8
     cache:
+        key: transform-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - transform/node_modules
     script:
@@ -32,6 +38,8 @@ test_node-6_transform:
     stage: test
     image: node:6
     cache:
+        key: transform-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - transform/node_modules
     script:
@@ -42,6 +50,8 @@ test_node-10_transform:
     stage: test
     image: node:10
     cache:
+        key: transform-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - transform/node_modules
     script:
@@ -51,6 +61,8 @@ test_node-10_transform:
 build_transform:
     stage: build
     cache:
+        key: transform-${CI_COMMIT_REF_SLUG}
+        policy: pull-push
         paths:
             - transform/node_modules
             - transform/dist
@@ -63,6 +75,8 @@ publish_transform:
     only:
         - tags
     cache:
+        key: transform-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - transform/node_modules
             - transform/dist

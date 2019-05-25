@@ -3,6 +3,8 @@
 install_utils:
     stage: install
     cache:
+        key: utils-${CI_COMMIT_REF_SLUG}
+        policy: push
         paths:
             - utils/node_modules
     script:
@@ -12,6 +14,8 @@ install_utils:
 lint_utils:
     stage: lint
     cache:
+        key: utils-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - utils/node_modules
     script:
@@ -22,6 +26,8 @@ test_node-8_utils:
     stage: test
     image: node:8
     cache:
+        key: utils-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - utils/node_modules
     script:
@@ -32,6 +38,8 @@ test_node-6_utils:
     stage: test
     image: node:6
     cache:
+        key: utils-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - utils/node_modules
     script:
@@ -42,6 +50,8 @@ test_node-10_utils:
     stage: test
     image: node:10
     cache:
+        key: utils-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - utils/node_modules
     script:
@@ -51,6 +61,8 @@ test_node-10_utils:
 build_utils:
     stage: build
     cache:
+        key: utils-${CI_COMMIT_REF_SLUG}
+        policy: pull-push
         paths:
             - utils/node_modules
             - utils/dist
@@ -63,6 +75,8 @@ publish_utils:
     only:
         - tags
     cache:
+        key: utils-${CI_COMMIT_REF_SLUG}
+        policy: pull
         paths:
             - utils/node_modules
             - utils/dist
