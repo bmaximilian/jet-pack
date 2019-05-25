@@ -101,7 +101,7 @@ publish_react-filter:
       - react-filter/dist
   artifacts:
     paths:
-      - react-filter-*.tgz
+      - react-filter/react-filter-*.tgz
   script:
     - cd react-filter
     - 'npx nodexec publish:conditionally'
@@ -192,7 +192,7 @@ publish_react-router:
       - react-router/dist
   artifacts:
     paths:
-      - react-router-*.tgz
+      - react-router/react-router-*.tgz
   script:
     - cd react-router
     - 'npx nodexec publish:conditionally'
@@ -288,7 +288,7 @@ publish_react-store:
       - react-store/dist
   artifacts:
     paths:
-      - react-store-*.tgz
+      - react-store/react-store-*.tgz
   script:
     - cd react-store
     - 'npx nodexec publish:conditionally'
@@ -384,7 +384,7 @@ publish_request:
       - request/dist
   artifacts:
     paths:
-      - request-*.tgz
+      - request/request-*.tgz
   script:
     - cd request
     - 'npx nodexec publish:conditionally'
@@ -475,7 +475,7 @@ publish_service-container:
       - service-container/dist
   artifacts:
     paths:
-      - service-container-*.tgz
+      - service-container/service-container-*.tgz
   script:
     - cd service-container
     - 'npx nodexec publish:conditionally'
@@ -566,7 +566,7 @@ publish_store:
       - store/dist
   artifacts:
     paths:
-      - store-*.tgz
+      - store/store-*.tgz
   script:
     - cd store
     - 'npx nodexec publish:conditionally'
@@ -657,7 +657,7 @@ publish_transform:
       - transform/dist
   artifacts:
     paths:
-      - transform-*.tgz
+      - transform/transform-*.tgz
   script:
     - cd transform
     - 'npx nodexec publish:conditionally'
@@ -748,7 +748,7 @@ publish_utils:
       - utils/dist
   artifacts:
     paths:
-      - utils-*.tgz
+      - utils/utils-*.tgz
   script:
     - cd utils
     - 'npx nodexec publish:conditionally'
@@ -844,7 +844,7 @@ publish_validation:
       - validation/dist
   artifacts:
     paths:
-      - validation-*.tgz
+      - validation/validation-*.tgz
   script:
     - cd validation
     - 'npx nodexec publish:conditionally'
