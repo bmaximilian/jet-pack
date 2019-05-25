@@ -67,6 +67,12 @@ build_validation:
             - validation/node_modules
             - validation/dist
     script:
+        # Build local peer dependencies
+        - cd utils
+        - NODE_ENV=development npm install
+        - npm run build
+        - cd ..
+        # Build module
         - cd validation
         - npm run prepare
         - npm run build

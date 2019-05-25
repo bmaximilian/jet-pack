@@ -67,6 +67,12 @@ build_request:
             - request/node_modules
             - request/dist
     script:
+        # Build local peer dependencies
+        - cd utils
+        - NODE_ENV=development npm install
+        - npm run build
+        - cd ..
+        # Build module
         - cd request
         - npm run prepare
         - npm run build

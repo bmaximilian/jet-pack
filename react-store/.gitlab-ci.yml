@@ -67,6 +67,12 @@ build_react-store:
             - react-store/node_modules
             - react-store/dist
     script:
+        # Build local peer dependencies
+        - cd store
+        - NODE_ENV=development npm install
+        - npm run build
+        - cd ..
+        # Build module
         - cd react-store
         - npm run prepare
         - npm run build

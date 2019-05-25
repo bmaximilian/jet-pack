@@ -67,6 +67,12 @@ build_react-filter:
             - react-filter/node_modules
             - react-filter/dist
     script:
+        # Build local peer dependencies
+        - cd utils
+        - NODE_ENV=development npm install
+        - npm run build
+        - cd ..
+        # Build module
         - cd react-filter
         - npm run prepare
         - npm run build
