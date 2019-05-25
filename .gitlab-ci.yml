@@ -192,6 +192,98 @@ publish_react-router:
   script:
     - cd react-router
     - 'npx nodexec publish:conditionally'
+install_react-store:
+  stage: install
+  cache:
+    key: 'react-store-${CI_COMMIT_REF_SLUG}'
+    policy: push
+    paths:
+      - react-store/node_modules
+  script:
+    - cd react-store
+    - NODE_ENV=development npm install
+lint_react-store:
+  stage: lint
+  cache:
+    key: 'react-store-${CI_COMMIT_REF_SLUG}'
+    policy: pull
+    paths:
+      - react-store/node_modules
+  script:
+    - cd react-store
+    - npm run lint
+test_node-8_react-store:
+  stage: test
+  image: 'node:8'
+  cache:
+    key: 'react-store-${CI_COMMIT_REF_SLUG}'
+    policy: pull
+    paths:
+      - react-store/node_modules
+  script:
+    - cd react-store
+    - npm test
+test_node-6_react-store:
+  stage: test
+  image: 'node:6'
+  cache:
+    key: 'react-store-${CI_COMMIT_REF_SLUG}'
+    policy: pull
+    paths:
+      - react-store/node_modules
+  script:
+    - cd react-store
+    - npm test
+test_node-10_react-store:
+  stage: test
+  image: 'node:10'
+  cache:
+    key: 'react-store-${CI_COMMIT_REF_SLUG}'
+    policy: pull
+    paths:
+      - react-store/node_modules
+  script:
+    - cd react-store
+    - npm test
+build_react-store:
+  stage: build
+  cache:
+    key: 'react-store-${CI_COMMIT_REF_SLUG}'
+    policy: pull-push
+    paths:
+      - react-store/node_modules
+      - react-store/dist
+  script:
+    - cd react-store
+    - npm run prepare
+    - npm run build
+dry-pack_react-store:
+  stage: pack-dry
+  cache:
+    key: 'react-store-${CI_COMMIT_REF_SLUG}'
+    policy: pull
+    paths:
+      - react-store/node_modules
+      - react-store/dist
+  script:
+    - cd react-store
+    - npm pack --dry-run
+publish_react-store:
+  stage: deploy
+  only:
+    - tags
+  cache:
+    key: 'react-store-${CI_COMMIT_REF_SLUG}'
+    policy: pull
+    paths:
+      - react-store/node_modules
+      - react-store/dist
+  artifacts:
+    paths:
+      - react-store-*.tgz
+  script:
+    - cd react-store
+    - 'npx nodexec publish:conditionally'
 install_request:
   stage: install
   cache:
