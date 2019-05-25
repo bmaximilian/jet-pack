@@ -2,12 +2,18 @@
 ## Install all the development sources
 install_validation:
     stage: install
+    cache:
+        paths:
+            - validation/node_modules
     script:
         - cd validation
         - NODE_ENV=development npm install
 
 lint_validation:
     stage: lint
+    cache:
+        paths:
+            - validation/node_modules
     script:
         - cd validation
         - npm run lint
@@ -15,6 +21,9 @@ lint_validation:
 test_node-8_validation:
     stage: test
     image: node:8
+    cache:
+        paths:
+            - validation/node_modules
     script:
         - cd validation
         - npm test
@@ -22,6 +31,9 @@ test_node-8_validation:
 test_node-6_validation:
     stage: test
     image: node:6
+    cache:
+        paths:
+            - validation/node_modules
     script:
         - cd validation
         - npm test
@@ -29,12 +41,19 @@ test_node-6_validation:
 test_node-10_validation:
     stage: test
     image: node:10
+    cache:
+        paths:
+            - validation/node_modules
     script:
         - cd validation
         - npm test
 
 build_validation:
     stage: build
+    cache:
+        paths:
+            - validation/node_modules
+            - validation/dist
     script:
         - cd validation
         - npm run prepare
@@ -44,6 +63,10 @@ publish_validation:
     stage: deploy
     only:
         - tags
+    cache:
+        paths:
+            - validation/node_modules
+            - validation/dist
     script:
         - cd validation
         - npx nodexec publish:conditionally

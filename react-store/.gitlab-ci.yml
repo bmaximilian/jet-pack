@@ -2,47 +2,71 @@
 ## Install all the development sources
 install_transform:
     stage: install
+    cache:
+        paths:
+            - react-store/node_modules
     script:
-        - cd transform
+        - cd react-store
         - NODE_ENV=development npm install
 
 lint_transform:
     stage: lint
+    cache:
+        paths:
+            - react-store/node_modules
     script:
-        - cd transform
+        - cd react-store
         - npm run lint
 
 test_node-8_transform:
     stage: test
     image: node:8
+    cache:
+        paths:
+            - react-store/node_modules
     script:
-        - cd transform
+        - cd react-store
         - npm test
 
 test_node-6_transform:
     stage: test
     image: node:6
+    cache:
+        paths:
+            - react-store/node_modules
     script:
-        - cd transform
+        - cd react-store
         - npm test
 
 test_node-10_transform:
     stage: test
     image: node:10
+    cache:
+        paths:
+            - react-store/node_modules
     script:
-        - cd transform
+        - cd react-store
         - npm test
 
 build_transform:
     stage: build
+    cache:
+        paths:
+            - react-store/node_modules
+            - react-store/dist
     script:
-        - cd transform
+        - cd react-store
+        - npm run prepare
         - npm run build
 
 publish_transform:
     stage: deploy
     only:
         - tags
+    cache:
+        paths:
+            - react-store/node_modules
+            - react-store/dist
     script:
-        - cd transform
+        - cd react-store
         - npx nodexec publish:conditionally

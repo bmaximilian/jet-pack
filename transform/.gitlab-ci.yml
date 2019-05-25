@@ -2,12 +2,18 @@
 ## Install all the development sources
 install_transform:
     stage: install
+    cache:
+        paths:
+            - transform/node_modules
     script:
         - cd transform
         - NODE_ENV=development npm install
 
 lint_transform:
     stage: lint
+    cache:
+        paths:
+            - transform/node_modules
     script:
         - cd transform
         - npm run lint
@@ -15,6 +21,9 @@ lint_transform:
 test_node-8_transform:
     stage: test
     image: node:8
+    cache:
+        paths:
+            - transform/node_modules
     script:
         - cd transform
         - npm test
@@ -22,6 +31,9 @@ test_node-8_transform:
 test_node-6_transform:
     stage: test
     image: node:6
+    cache:
+        paths:
+            - transform/node_modules
     script:
         - cd transform
         - npm test
@@ -29,12 +41,19 @@ test_node-6_transform:
 test_node-10_transform:
     stage: test
     image: node:10
+    cache:
+        paths:
+            - transform/node_modules
     script:
         - cd transform
         - npm test
 
 build_transform:
     stage: build
+    cache:
+        paths:
+            - transform/node_modules
+            - transform/dist
     script:
         - cd transform
         - npm run build
@@ -43,6 +62,10 @@ publish_transform:
     stage: deploy
     only:
         - tags
+    cache:
+        paths:
+            - transform/node_modules
+            - transform/dist
     script:
         - cd transform
         - npx nodexec publish:conditionally

@@ -2,12 +2,18 @@
 ## Install all the development sources
 install_react-router:
     stage: install
+    cache:
+        paths:
+            - react-router/node_modules
     script:
         - cd react-router
         - NODE_ENV=development npm install
 
 lint_react-router:
     stage: lint
+    cache:
+        paths:
+            - react-router/node_modules
     script:
         - cd react-router
         - npm run lint
@@ -15,6 +21,9 @@ lint_react-router:
 test_node-8_react-router:
     stage: test
     image: node:8
+    cache:
+        paths:
+            - react-router/node_modules
     script:
         - cd react-router
         - npm test
@@ -22,6 +31,9 @@ test_node-8_react-router:
 test_node-6_react-router:
     stage: test
     image: node:6
+    cache:
+        paths:
+            - react-router/node_modules
     script:
         - cd react-router
         - npm test
@@ -29,12 +41,19 @@ test_node-6_react-router:
 test_node-10_react-router:
     stage: test
     image: node:10
+    cache:
+        paths:
+            - react-router/node_modules
     script:
         - cd react-router
         - npm test
 
 build_react-router:
     stage: build
+    cache:
+        paths:
+            - react-router/node_modules
+            - react-router/dist
     script:
         - cd react-router
         - npm run build
@@ -43,6 +62,10 @@ publish_react-router:
     stage: deploy
     only:
         - tags
+    cache:
+        paths:
+            - react-router/node_modules
+            - react-router/dist
     script:
         - cd react-router
         - npx nodexec publish:conditionally

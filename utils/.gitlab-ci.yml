@@ -2,12 +2,18 @@
 ## Install all the development sources
 install_utils:
     stage: install
+    cache:
+        paths:
+            - utils/node_modules
     script:
         - cd utils
         - NODE_ENV=development npm install
 
 lint_utils:
     stage: lint
+    cache:
+        paths:
+            - utils/node_modules
     script:
         - cd utils
         - npm run lint
@@ -15,6 +21,9 @@ lint_utils:
 test_node-8_utils:
     stage: test
     image: node:8
+    cache:
+        paths:
+            - utils/node_modules
     script:
         - cd utils
         - npm test
@@ -22,6 +31,9 @@ test_node-8_utils:
 test_node-6_utils:
     stage: test
     image: node:6
+    cache:
+        paths:
+            - utils/node_modules
     script:
         - cd utils
         - npm test
@@ -29,12 +41,19 @@ test_node-6_utils:
 test_node-10_utils:
     stage: test
     image: node:10
+    cache:
+        paths:
+            - utils/node_modules
     script:
         - cd utils
         - npm test
 
 build_utils:
     stage: build
+    cache:
+        paths:
+            - utils/node_modules
+            - utils/dist
     script:
         - cd utils
         - npm run build
@@ -43,6 +62,10 @@ publish_utils:
     stage: deploy
     only:
         - tags
+    cache:
+        paths:
+            - utils/node_modules
+            - utils/dist
     script:
         - cd utils
         - npx nodexec publish:conditionally

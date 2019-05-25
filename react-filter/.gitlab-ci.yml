@@ -2,12 +2,18 @@
 ## Install all the development sources
 install_react-filter:
     stage: install
+    cache:
+        paths:
+            - react-filter/node_modules
     script:
         - cd react-filter
         - NODE_ENV=development npm install
 
 lint_react-filter:
     stage: lint
+    cache:
+        paths:
+            - react-filter/node_modules
     script:
         - cd react-filter
         - npm run lint
@@ -15,6 +21,9 @@ lint_react-filter:
 test_node-8_react-filter:
     stage: test
     image: node:8
+    cache:
+        paths:
+            - react-filter/node_modules
     script:
         - cd react-filter
         - npm test
@@ -22,6 +31,9 @@ test_node-8_react-filter:
 test_node-6_react-filter:
     stage: test
     image: node:6
+    cache:
+        paths:
+            - react-filter/node_modules
     script:
         - cd react-filter
         - npm test
@@ -29,12 +41,19 @@ test_node-6_react-filter:
 test_node-10_react-filter:
     stage: test
     image: node:10
+    cache:
+        paths:
+            - react-filter/node_modules
     script:
         - cd react-filter
         - npm test
 
 build_react-filter:
     stage: build
+    cache:
+        paths:
+            - react-filter/node_modules
+            - react-filter/dist
     script:
         - cd react-filter
         - npm run prepare
@@ -44,6 +63,10 @@ publish_react-filter:
     stage: deploy
     only:
         - tags
+    cache:
+        paths:
+            - react-filter/node_modules
+            - react-filter/dist
     script:
         - cd react-filter
         - npx nodexec publish:conditionally

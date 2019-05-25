@@ -2,12 +2,18 @@
 ## Install all the development sources
 install_store:
     stage: install
+    cache:
+        paths:
+            - store/node_modules
     script:
         - cd store
         - NODE_ENV=development npm install
 
 lint_store:
     stage: lint
+    cache:
+        paths:
+            - store/node_modules
     script:
         - cd store
         - npm run lint
@@ -15,6 +21,9 @@ lint_store:
 test_node-8_store:
     stage: test
     image: node:8
+    cache:
+        paths:
+            - store/node_modules
     script:
         - cd store
         - npm test
@@ -22,6 +31,9 @@ test_node-8_store:
 test_node-6_store:
     stage: test
     image: node:6
+    cache:
+        paths:
+            - store/node_modules
     script:
         - cd store
         - npm test
@@ -29,12 +41,19 @@ test_node-6_store:
 test_node-10_store:
     stage: test
     image: node:10
+    cache:
+        paths:
+            - store/node_modules
     script:
         - cd store
         - npm test
 
 build_store:
     stage: build
+    cache:
+        paths:
+            - store/node_modules
+            - store/dist
     script:
         - cd store
         - npm run build
@@ -43,6 +62,10 @@ publish_store:
     stage: deploy
     only:
         - tags
+    cache:
+        paths:
+            - store/node_modules
+            - store/dist
     script:
         - cd store
         - npx nodexec publish:conditionally
