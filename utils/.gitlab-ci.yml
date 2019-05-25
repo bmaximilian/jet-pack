@@ -94,7 +94,7 @@ publish_utils:
             - utils/dist
     artifacts:
         paths:
-            - utils-*.tgz
+            - utils/utils-*.tgz
     script:
         - cd utils
         - npx nodexec publish:conditionally

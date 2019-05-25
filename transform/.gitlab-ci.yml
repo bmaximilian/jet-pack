@@ -94,7 +94,7 @@ publish_transform:
             - transform/dist
     artifacts:
         paths:
-            - transform-*.tgz
+            - transform/transform-*.tgz
     script:
         - cd transform
         - npx nodexec publish:conditionally

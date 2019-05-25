@@ -94,7 +94,7 @@ publish_service-container:
             - service-container/dist
     artifacts:
         paths:
-            - service-container-*.tgz
+            - service-container/service-container-*.tgz
     script:
         - cd service-container
         - npx nodexec publish:conditionally

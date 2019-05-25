@@ -101,7 +101,7 @@ publish_validation:
             - validation/dist
     artifacts:
         paths:
-            - validation-*.tgz
+            - validation/validation-*.tgz
     script:
         - cd validation
         - npx nodexec publish:conditionally
