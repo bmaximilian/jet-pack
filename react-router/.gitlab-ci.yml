@@ -92,6 +92,9 @@ publish_react-router:
         paths:
             - react-router/node_modules
             - react-router/dist
+    artifacts:
+        paths:
+            - react-router-*.tgz
     script:
         - cd react-router
         - npx nodexec publish:conditionally

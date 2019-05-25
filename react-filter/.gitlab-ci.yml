@@ -93,6 +93,9 @@ publish_react-filter:
         paths:
             - react-filter/node_modules
             - react-filter/dist
+    artifacts:
+        paths:
+            - react-filter-*.tgz
     script:
         - cd react-filter
         - npx nodexec publish:conditionally

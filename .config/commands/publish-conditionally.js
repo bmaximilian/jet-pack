@@ -68,6 +68,7 @@ function publishConditionally(options, config, command) {
 
             if (response !== modulePackageJson.version) {
                 console.log(chalk.white(`Publishing new version of package ${packageName}: `) + chalk.cyan(modulePackageJson.version));
+                execSync('npm pack');
                 execSync('npm publish');
                 return;
             }

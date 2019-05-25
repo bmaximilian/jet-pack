@@ -93,6 +93,9 @@ publish_react-store:
         paths:
             - react-store/node_modules
             - react-store/dist
+    artifacts:
+        paths:
+            - react-store-*.tgz
     script:
         - cd react-store
         - npx nodexec publish:conditionally

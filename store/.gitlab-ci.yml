@@ -92,6 +92,9 @@ publish_store:
         paths:
             - store/node_modules
             - store/dist
+    artifacts:
+        paths:
+            - store-*.tgz
     script:
         - cd store
         - npx nodexec publish:conditionally

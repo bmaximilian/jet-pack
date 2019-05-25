@@ -93,6 +93,9 @@ publish_request:
         paths:
             - request/node_modules
             - request/dist
+    artifacts:
+        paths:
+            - request-*.tgz
     script:
         - cd request
         - npx nodexec publish:conditionally

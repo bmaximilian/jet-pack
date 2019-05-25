@@ -93,6 +93,9 @@ publish_validation:
         paths:
             - validation/node_modules
             - validation/dist
+    artifacts:
+        paths:
+            - validation-*.tgz
     script:
         - cd validation
         - npx nodexec publish:conditionally
