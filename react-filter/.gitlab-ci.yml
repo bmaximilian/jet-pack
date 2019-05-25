@@ -62,6 +62,7 @@ build_react-filter:
     stage: build
     cache:
         key: react-filter-${CI_COMMIT_REF_SLUG}
+        policy: pull-push
         paths:
             - react-filter/node_modules
             - react-filter/dist
@@ -69,6 +70,18 @@ build_react-filter:
         - cd react-filter
         - npm run prepare
         - npm run build
+
+dry-pack_react-filter:
+    stage: pack-dry
+    cache:
+        key: react-filter-${CI_COMMIT_REF_SLUG}
+        policy: pull
+        paths:
+            - react-filter/node_modules
+            - react-filter/dist
+    script:
+        - cd react-filter
+        - npm pack --dry-run
 
 publish_react-filter:
     stage: deploy

@@ -71,6 +71,18 @@ build_validation:
         - npm run prepare
         - npm run build
 
+dry-pack_validation:
+    stage: pack-dry
+    cache:
+        key: validation-${CI_COMMIT_REF_SLUG}
+        policy: pull
+        paths:
+            - validation/node_modules
+            - validation/dist
+    script:
+        - cd validation
+        - npm pack --dry-run
+
 publish_validation:
     stage: deploy
     only:

@@ -70,6 +70,18 @@ build_store:
         - cd store
         - npm run build
 
+dry-pack_store:
+    stage: pack-dry
+    cache:
+        key: store-${CI_COMMIT_REF_SLUG}
+        policy: pull
+        paths:
+            - store/node_modules
+            - store/dist
+    script:
+        - cd store
+        - npm pack --dry-run
+
 publish_store:
     stage: deploy
     only:

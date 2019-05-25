@@ -70,6 +70,18 @@ build_service-container:
         - cd service-container
         - npm run build
 
+dry-pack_service-container:
+    stage: pack-dry
+    cache:
+        key: service-container-${CI_COMMIT_REF_SLUG}
+        policy: pull
+        paths:
+            - service-container/node_modules
+            - service-container/dist
+    script:
+        - cd service-container
+        - npm pack --dry-run
+
 publish_service-container:
     stage: deploy
     only:

@@ -70,6 +70,18 @@ build_transform:
         - cd transform
         - npm run build
 
+dry-pack_transform:
+    stage: pack-dry
+    cache:
+        key: transform-${CI_COMMIT_REF_SLUG}
+        policy: pull
+        paths:
+            - transform/node_modules
+            - transform/dist
+    script:
+        - cd transform
+        - npm pack --dry-run
+
 publish_transform:
     stage: deploy
     only:

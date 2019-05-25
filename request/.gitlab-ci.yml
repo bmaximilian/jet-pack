@@ -71,6 +71,18 @@ build_request:
         - npm run prepare
         - npm run build
 
+dry-pack_request:
+    stage: pack-dry
+    cache:
+        key: request-${CI_COMMIT_REF_SLUG}
+        policy: pull
+        paths:
+            - request/node_modules
+            - request/dist
+    script:
+        - cd request
+        - npm pack --dry-run
+
 publish_request:
     stage: deploy
     only:

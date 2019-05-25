@@ -3,6 +3,7 @@ stages:
     - lint
     - test
     - build
+    - pack-dry
     - deploy
 variables:
     NODE_ENV: "production"

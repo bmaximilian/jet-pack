@@ -70,6 +70,18 @@ build_utils:
         - cd utils
         - npm run build
 
+dry-pack_utils:
+    stage: pack-dry
+    cache:
+        key: utils-${CI_COMMIT_REF_SLUG}
+        policy: pull
+        paths:
+            - utils/node_modules
+            - utils/dist
+    script:
+        - cd utils
+        - npm pack --dry-run
+
 publish_utils:
     stage: deploy
     only:

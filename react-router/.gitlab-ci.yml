@@ -70,6 +70,18 @@ build_react-router:
         - cd react-router
         - npm run build
 
+dry-pack_react-router:
+    stage: pack-dry
+    cache:
+        key: react-router-${CI_COMMIT_REF_SLUG}
+        policy: pull
+        paths:
+            - react-router/node_modules
+            - react-router/dist
+    script:
+        - cd react-router
+        - npm pack --dry-run
+
 publish_react-router:
     stage: deploy
     only:

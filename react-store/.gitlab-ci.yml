@@ -71,6 +71,18 @@ build_react-store:
         - npm run prepare
         - npm run build
 
+dry-pack_react-store:
+    stage: pack-dry
+    cache:
+        key: react-store-${CI_COMMIT_REF_SLUG}
+        policy: pull
+        paths:
+            - react-store/node_modules
+            - react-store/dist
+    script:
+        - cd react-store
+        - npm pack --dry-run
+
 publish_react-store:
     stage: deploy
     only:
