@@ -3,6 +3,7 @@ stages:
   - lint
   - test
   - build
+  - pack-dry
   - deploy
 variables:
   NODE_ENV: production
@@ -65,6 +66,7 @@ build_react-filter:
   stage: build
   cache:
     key: 'react-filter-${CI_COMMIT_REF_SLUG}'
+    policy: pull-push
     paths:
       - react-filter/node_modules
       - react-filter/dist
@@ -72,6 +74,17 @@ build_react-filter:
     - cd react-filter
     - npm run prepare
     - npm run build
+dry-pack_react-filter:
+  stage: pack-dry
+  cache:
+    key: 'react-filter-${CI_COMMIT_REF_SLUG}'
+    policy: pull
+    paths:
+      - react-filter/node_modules
+      - react-filter/dist
+  script:
+    - cd react-filter
+    - npm pack --dry-run
 publish_react-filter:
   stage: deploy
   only:
@@ -149,6 +162,17 @@ build_react-router:
   script:
     - cd react-router
     - npm run build
+dry-pack_react-router:
+  stage: pack-dry
+  cache:
+    key: 'react-router-${CI_COMMIT_REF_SLUG}'
+    policy: pull
+    paths:
+      - react-router/node_modules
+      - react-router/dist
+  script:
+    - cd react-router
+    - npm pack --dry-run
 publish_react-router:
   stage: deploy
   only:
@@ -227,6 +251,17 @@ build_request:
     - cd request
     - npm run prepare
     - npm run build
+dry-pack_request:
+  stage: pack-dry
+  cache:
+    key: 'request-${CI_COMMIT_REF_SLUG}'
+    policy: pull
+    paths:
+      - request/node_modules
+      - request/dist
+  script:
+    - cd request
+    - npm pack --dry-run
 publish_request:
   stage: deploy
   only:
@@ -304,6 +339,17 @@ build_service-container:
   script:
     - cd service-container
     - npm run build
+dry-pack_service-container:
+  stage: pack-dry
+  cache:
+    key: 'service-container-${CI_COMMIT_REF_SLUG}'
+    policy: pull
+    paths:
+      - service-container/node_modules
+      - service-container/dist
+  script:
+    - cd service-container
+    - npm pack --dry-run
 publish_service-container:
   stage: deploy
   only:
@@ -381,6 +427,17 @@ build_store:
   script:
     - cd store
     - npm run build
+dry-pack_store:
+  stage: pack-dry
+  cache:
+    key: 'store-${CI_COMMIT_REF_SLUG}'
+    policy: pull
+    paths:
+      - store/node_modules
+      - store/dist
+  script:
+    - cd store
+    - npm pack --dry-run
 publish_store:
   stage: deploy
   only:
@@ -458,6 +515,17 @@ build_transform:
   script:
     - cd transform
     - npm run build
+dry-pack_transform:
+  stage: pack-dry
+  cache:
+    key: 'transform-${CI_COMMIT_REF_SLUG}'
+    policy: pull
+    paths:
+      - transform/node_modules
+      - transform/dist
+  script:
+    - cd transform
+    - npm pack --dry-run
 publish_transform:
   stage: deploy
   only:
@@ -535,6 +603,17 @@ build_utils:
   script:
     - cd utils
     - npm run build
+dry-pack_utils:
+  stage: pack-dry
+  cache:
+    key: 'utils-${CI_COMMIT_REF_SLUG}'
+    policy: pull
+    paths:
+      - utils/node_modules
+      - utils/dist
+  script:
+    - cd utils
+    - npm pack --dry-run
 publish_utils:
   stage: deploy
   only:
@@ -613,6 +692,17 @@ build_validation:
     - cd validation
     - npm run prepare
     - npm run build
+dry-pack_validation:
+  stage: pack-dry
+  cache:
+    key: 'validation-${CI_COMMIT_REF_SLUG}'
+    policy: pull
+    paths:
+      - validation/node_modules
+      - validation/dist
+  script:
+    - cd validation
+    - npm pack --dry-run
 publish_validation:
   stage: deploy
   only:
