@@ -4,25 +4,6 @@ stages:
     - test
     - build
     - deploy
-
-cache:
-    paths:
-        - react-filter/node_modules
-        - react-filter/dist
-        - react-router/node_modules
-        - react-router/dist
-        - request/node_modules
-        - request/dist
-        - service-container/node_modules
-        - service-container/dist
-        - store/node_modules
-        - store/dist
-        - transform/node_modules
-        - transform/dist
-        - utils/node_modules
-        - utils/dist
-        - validation/node_modules
-        - validation/dist
 variables:
     NODE_ENV: "production"
     CI: "true"
