@@ -95,6 +95,9 @@ publish_react-filter:
     paths:
       - react-filter/node_modules
       - react-filter/dist
+  artifacts:
+    paths:
+      - react-filter-*.tgz
   script:
     - cd react-filter
     - 'npx nodexec publish:conditionally'
@@ -183,6 +186,9 @@ publish_react-router:
     paths:
       - react-router/node_modules
       - react-router/dist
+  artifacts:
+    paths:
+      - react-router-*.tgz
   script:
     - cd react-router
     - 'npx nodexec publish:conditionally'
@@ -272,6 +278,9 @@ publish_request:
     paths:
       - request/node_modules
       - request/dist
+  artifacts:
+    paths:
+      - request-*.tgz
   script:
     - cd request
     - 'npx nodexec publish:conditionally'
@@ -360,6 +369,9 @@ publish_service-container:
     paths:
       - service-container/node_modules
       - service-container/dist
+  artifacts:
+    paths:
+      - service-container-*.tgz
   script:
     - cd service-container
     - 'npx nodexec publish:conditionally'
@@ -448,6 +460,9 @@ publish_store:
     paths:
       - store/node_modules
       - store/dist
+  artifacts:
+    paths:
+      - store-*.tgz
   script:
     - cd store
     - 'npx nodexec publish:conditionally'
@@ -536,6 +551,9 @@ publish_transform:
     paths:
       - transform/node_modules
       - transform/dist
+  artifacts:
+    paths:
+      - transform-*.tgz
   script:
     - cd transform
     - 'npx nodexec publish:conditionally'
@@ -624,6 +642,9 @@ publish_utils:
     paths:
       - utils/node_modules
       - utils/dist
+  artifacts:
+    paths:
+      - utils-*.tgz
   script:
     - cd utils
     - 'npx nodexec publish:conditionally'
@@ -713,6 +734,9 @@ publish_validation:
     paths:
       - validation/node_modules
       - validation/dist
+  artifacts:
+    paths:
+      - validation-*.tgz
   script:
     - cd validation
     - 'npx nodexec publish:conditionally'
