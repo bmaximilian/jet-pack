@@ -90,4 +90,12 @@ describe('oneOf', () => {
             done();
         });
     });
+
+    it('Should set the correct error messages', (done: any) => {
+        oneOf({ test: '4' }, 'test', '{field} is not one of {includes}', ['1', '2', '3'], get)
+        .catch((e) => {
+            expect(e).to.equal('test is not one of 1, 2, 3');
+            done();
+        })
+    });
 });
