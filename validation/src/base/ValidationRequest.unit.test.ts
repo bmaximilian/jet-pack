@@ -31,10 +31,6 @@ class FooValidationMessages extends FooValidation {
     }
 }
 
-function assertDeepEqual(actual: any, expected: any) {
-    expect(actual).deep.equal(expected);
-}
-
 describe('ValidationRequest', () => {
     let validation: ValidationRequest | any;
 
