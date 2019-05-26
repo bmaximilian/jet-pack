@@ -18,6 +18,13 @@ export class ValidationRequest<Input = any> {
     protected input: Input|null = null;
 
     /**
+     * Constructor of ValidationRequest
+     *
+     * @param {Validator<Input>} validator
+     */
+    constructor(protected validator: Validator<Input> = new Validator<Input>()) {}
+
+    /**
      * Sets the input
      *
      * @param input
@@ -34,7 +41,7 @@ export class ValidationRequest<Input = any> {
      * @param {number|string|array} keys : number|string|array : The keys of the input to return
      * @return {*} : The part of the input
      */
-    public getInput(keys: string|number|string[]): any {
+    public getInput(keys?: string|number|string[]): any {
         if (!isString(keys) && !isNumber(keys) && (!isArray(keys) || keys.length === 0)) {
             return this.input;
         }
@@ -53,11 +60,10 @@ export class ValidationRequest<Input = any> {
     /**
      * Validates the request
      *
-     * @return {Promise<T>} : The validation promise
+     * @return {Observable<T>} : The validation observable
      */
     public validate() {
-        const validator = new Validator<Input>();
-        return validator.validateAll(this.rules, this.input, this.messages);
+        return this.validator.validateAll(this.rules, this.input, this.messages);
     }
 
     /**
