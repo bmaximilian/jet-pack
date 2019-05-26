@@ -6,7 +6,6 @@
 
 import { expect } from 'chai';
 import 'mocha';
-import { TestScheduler } from 'rxjs/testing';
 import { Validator } from '../validator';
 import { IValidationMessages, IValidationRules, ValidationRequest } from './ValidationRequest';
 
@@ -38,11 +37,9 @@ function assertDeepEqual(actual: any, expected: any) {
 
 describe('ValidationRequest', () => {
     let validation: ValidationRequest | any;
-    let scheduler: TestScheduler;
 
     beforeEach(() => {
         validation = new FooValidation();
-        scheduler = new TestScheduler(assertDeepEqual);
     });
 
     it('Should set the validator instance', () => {

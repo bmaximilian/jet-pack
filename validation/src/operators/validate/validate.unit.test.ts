@@ -25,7 +25,7 @@ class FooValidation extends ValidationRequest {
 describe('validate', () => {
 
     it('Should validate every value that passes the stream', (done) => {
-        const source$ = of({
+        of({
             foo: 'abc',
             bar: 'Hello World!',
             baz: 3,
