@@ -5,7 +5,7 @@
  */
 
 import { StoreService } from '@jet-pack/store';
-import React, { Component } from 'react';
+import React from 'react';
 import { ReactReduxContext } from 'react-redux';
 
 type StoreMapper = (store: StoreService) => { [key: string]: any };
