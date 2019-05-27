@@ -44,6 +44,15 @@ export abstract class ReduxAction<S = any> implements AnyAction {
     }
 
     /**
+     * Returns the triggers
+     *
+     * @return {string[]} : The triggers
+     */
+    public getTriggers(): string[] {
+        return this.triggers;
+    }
+
+    /**
      * Let the action manipulate the state
      *
      * @param {S} state : The current state

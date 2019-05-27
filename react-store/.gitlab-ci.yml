@@ -8,8 +8,15 @@ install_react-store:
         paths:
             - react-store/node_modules
     script:
+        # Build local peer dependencies
+        - cd store
+        - NODE_ENV=development npm install
+        - npm run build
+        - cd ..
+        # Build module
         - cd react-store
         - NODE_ENV=development npm install
+        - rm -rf node_modules/@jet-pack/store && mkdir -p node_modules/@jet-pack/store && cp -rf ../store node_modules/@jet-pack
 
 lint_react-store:
     stage: lint
@@ -67,14 +74,7 @@ build_react-store:
             - react-store/node_modules
             - react-store/dist
     script:
-        # Build local peer dependencies
-        - cd store
-        - NODE_ENV=development npm install
-        - npm run build
-        - cd ..
-        # Build module
         - cd react-store
-        - npm run prepare
         - npm run build
 
 dry-pack_react-store:

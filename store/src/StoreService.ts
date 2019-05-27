@@ -170,13 +170,12 @@ export class StoreService<S = any> {
             throw new Error('Cannot dispatch without a redux store. You must call createStore() first.');
         }
 
-        // if (!isString(trigger) || isEmpty(trigger)) {
-        //     if (!isString(trigger)) throw new Error('The trigger should always be a string.');
-        //     if (isEmpty(trigger)) throw new Error('The trigger can not be empty');
-        // }
-
-        if (trigger) {
+        if (trigger && action.addTrigger) {
             action.addTrigger(trigger);
+        }
+
+        if (action.getTriggers && isEmpty(action.getTriggers())) {
+            throw new Error('The action should have at least one trigger.');
         }
 
         return this.reduxStore.dispatch({ action, type: action.type });

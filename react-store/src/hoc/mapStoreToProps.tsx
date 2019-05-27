@@ -5,7 +5,7 @@
  */
 
 import { StoreService } from '@jet-pack/store';
-import React, { Component } from 'react';
+import React from 'react';
 import { ReactReduxContext } from 'react-redux';
 
 type StoreMapper = (store: StoreService) => { [key: string]: any };
@@ -34,7 +34,7 @@ function mapStoreToComponent(
  * @param {StoreMapper} storeMapper
  */
 export function mapStoreToProps(storeMapper: StoreMapper) {
-    return (WrappedComponent: Component) => (props: any) => (
+    return (WrappedComponent: any) => (props: any) => (
         <ReactReduxContext.Consumer>
             {({ store }) => mapStoreToComponent(
                 store as StoreService,

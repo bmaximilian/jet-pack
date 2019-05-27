@@ -11,8 +11,8 @@ import { mapStoreToProps } from './mapStoreToProps';
  *
  * @return {Component}
  */
-export function connectStoreAwait() {
+export function connectStoreAwait(WrappedComponent: any) {
     return mapStoreToProps((store: StoreService) => ({
         await: store.await,
-    }));
+    }))(WrappedComponent);
 }
