@@ -204,8 +204,15 @@ install_react-store:
     paths:
       - react-store/node_modules
   script:
+    - cd store
+    - NODE_ENV=development npm install
+    - npm run build
+    - cd ..
     - cd react-store
     - NODE_ENV=development npm install
+    - >-
+      rm -rf node_modules/@jet-pack/store && cp -rf ../store
+      node_modules/@jet-pack/store
 lint_react-store:
   stage: lint
   cache:
@@ -258,12 +265,7 @@ build_react-store:
       - react-store/node_modules
       - react-store/dist
   script:
-    - cd store
-    - NODE_ENV=development npm install
-    - npm run build
-    - cd ..
     - cd react-store
-    - npm run prepare
     - npm run build
 dry-pack_react-store:
   stage: pack-dry
