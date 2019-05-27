@@ -16,7 +16,7 @@ install_react-store:
         # Build module
         - cd react-store
         - NODE_ENV=development npm install
-        - rm -rf node_modules/@jet-pack/store && mkdir -p node_modules/@jet-pack/store && cp -rf ../store node_modules/@jet-pack/store
+        - rm -rf node_modules/@jet-pack/store && mkdir -p node_modules/@jet-pack/store && cp -rf ../store node_modules/@jet-pack
 
 lint_react-store:
     stage: lint
