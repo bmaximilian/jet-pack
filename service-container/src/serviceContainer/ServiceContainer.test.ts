@@ -44,6 +44,15 @@ describe('ServiceContainer', () => {
         expect(services.has('mock')).to.be.true;
     });
 
+    it('Should throw when trying to override a service', () => {
+        const services = new ServiceContainer();
+
+        expect(services.has('mock')).to.be.false;
+        expect(services.set('mock', MockService)).to.be.undefined;
+        expect(services.has('mock')).to.be.true;
+        expect(() => services.set('mock', MockService)).to.throw;
+    });
+
     it('Should keep the data of a service in a singleton', () => {
         const services = new ServiceContainer();
 

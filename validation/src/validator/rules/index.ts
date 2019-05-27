@@ -4,4 +4,4 @@
  * @author Maximilian Beck <maximilian.beck@wtl.de>
  */
 
-export * from './oneOf';
+export { oneOf } from './oneOf/oneOf';

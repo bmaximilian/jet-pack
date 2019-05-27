@@ -4,4 +4,4 @@
  * @author Maximilian Beck <maximilian.beck@wtl.de>
  */
 
-export * from './validate';
+export * from './validate/validate';

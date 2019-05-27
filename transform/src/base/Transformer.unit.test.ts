@@ -47,13 +47,13 @@ describe('Transformer', () => {
     it('Should throw when running without an input', () => {
         const transformer = new MyTestTransformer();
 
-        expect(() => transformer.run()).to.throw;
+        expect(() => transformer.run()).to.throw('The input must be set before executing transform()');
 
         transformer.setInput(null);
-        expect(() => transformer.run()).to.throw;
+        expect(() => transformer.run()).to.throw('The input must be set before executing transform()');
 
         transformer.setInput(undefined);
-        expect(() => transformer.run()).to.throw;
+        expect(() => transformer.run()).to.throw('The input must be set before executing transform()');
 
         transformer.setInput({ foo: 'yay' });
         expect(() => transformer.run()).not.to.throw;

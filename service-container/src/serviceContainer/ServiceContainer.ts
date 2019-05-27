@@ -50,7 +50,6 @@ export class ServiceContainer {
                 case 'singleton':
                     return foundService.component;
                 case 'factory':
-                    return new foundService.component(...args);
                 default:
                     return new foundService.component(...args);
             }
@@ -79,12 +78,10 @@ export class ServiceContainer {
 
         switch (type) {
             case 'singleton':
+            default:
                 newService.component = new component(...args);
                 break;
             case 'factory':
-                break;
-            default:
-                newService.component = new component(...args);
                 break;
         }
 

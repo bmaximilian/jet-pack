@@ -8,8 +8,15 @@ install_validation:
         paths:
             - validation/node_modules
     script:
+        # Build local peer dependencies
+        - cd utils
+        - NODE_ENV=development npm install
+        - npm run build
+        - cd ..
+        # Install module
         - cd validation
         - NODE_ENV=development npm install
+        - rm -rf node_modules/@jet-pack/utils && mkdir -p node_modules/@jet-pack/utils && cp -rf ../utils node_modules/@jet-pack/
 
 lint_validation:
     stage: lint
@@ -67,14 +74,7 @@ build_validation:
             - validation/node_modules
             - validation/dist
     script:
-        # Build local peer dependencies
-        - cd utils
-        - NODE_ENV=development npm install
-        - npm run build
-        - cd ..
-        # Build module
         - cd validation
-        - npm run prepare
         - npm run build
 
 dry-pack_validation:

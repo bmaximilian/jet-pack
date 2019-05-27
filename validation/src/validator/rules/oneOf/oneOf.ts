@@ -17,7 +17,13 @@ import { includes, toString } from 'lodash';
  * @param {Function} get : Function : The function to get the field
  * @return {Promise<any>} : The validation
  */
-export function oneOf(data: {}, field: string, message: string, args: string[], get: (...args: any[]) => any) {
+export function oneOf(
+    data: {},
+    field: string,
+    message: string,
+    args: string[],
+    get: (...args: any[]) => any,
+): Promise<string> {
     const value = toString(get(data, field));
     const formattedMessage = replacePlaceholder(message, {
         field,

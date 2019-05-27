@@ -11,7 +11,7 @@ import { isFunction } from 'lodash';
 import { Observable } from 'rxjs';
 import * as customRules from './rules';
 
-export interface IValidationFalure {
+export interface IValidationFailure {
     field: string;
     message: string;
     validation: string;
@@ -26,14 +26,14 @@ export class Validator<Input = any> {
     /**
      * Constructor of Validator
      */
-    constructor(validationRules = {}) {
+    constructor(validationRules = {}, formatter: any = Vanilla) {
         this.indicativeValidator = IndicativeValidator(
             {
                 ...indicativeValidationRules,
                 ...customRules,
                 ...validationRules,
             },
-            Vanilla,
+            formatter,
         );
     }
 
@@ -90,7 +90,7 @@ export class Validator<Input = any> {
                 observer.next(response);
                 observer.complete();
             })
-            .catch((error: IValidationFalure[]) => {
+            .catch((error: IValidationFailure[]) => {
                 observer.error(error);
                 observer.complete();
             });
