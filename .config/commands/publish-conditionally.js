@@ -4,6 +4,7 @@ const simpleGit = require('simple-git');
 const chalk = require('chalk');
 const { execSync } = require('child_process');
 const latestVersion = require('latest-version');
+const { get } = require('lodash');
 const packageJson = require('../../package');
 
 /**
@@ -36,6 +37,11 @@ function publishConditionally(options, config, command) {
     }
 
     const packageName = `@jet-pack/${moduleName}`;
+
+    if (get(modulePackageJson, 'excluded', false)) {
+        console.log(chalk.yellow(`Package ${packageName} is not published because it is marked as excluded in package.json`));
+        process.exit(0);
+    }
 
     const git = simpleGit();
     git.tags(['--sort'], (listTagsError, tagsList) => {

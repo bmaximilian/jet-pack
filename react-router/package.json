@@ -1,6 +1,7 @@
 {
   "name": "@jet-pack/react-router",
   "version": "1.0.0",
+  "excluded": true,
   "description": "A wrapper/supporter for the react-router with authentication and permission support.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
