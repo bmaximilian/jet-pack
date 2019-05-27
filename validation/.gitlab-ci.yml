@@ -16,7 +16,7 @@ install_validation:
         # Install module
         - cd validation
         - NODE_ENV=development npm install
-        - rm -rf node_modules/@jet-pack/utils && mkdir -p node_modules/@jet-pack/utils && cp -rf ../utils node_modules/@jet-pack/utils
+        - rm -rf node_modules/@jet-pack/utils && mkdir -p node_modules/@jet-pack/utils && cp -rf ../utils node_modules/@jet-pack/
 
 lint_validation:
     stage: lint
