@@ -766,6 +766,9 @@ install_validation:
     - cd ..
     - cd validation
     - NODE_ENV=development npm install
+    - >-
+      rm -rf node_modules/@jet-pack/utils && cp -rf ../utils
+      node_modules/@jet-pack/utils
 lint_validation:
   stage: lint
   cache:
@@ -819,7 +822,6 @@ build_validation:
       - validation/dist
   script:
     - cd validation
-    - npm run prepare
     - npm run build
 dry-pack_validation:
   stage: pack-dry
