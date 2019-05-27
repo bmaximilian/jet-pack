@@ -8,6 +8,12 @@ install_validation:
         paths:
             - validation/node_modules
     script:
+        # Build local peer dependencies
+        - cd utils
+        - NODE_ENV=development npm install
+        - npm run build
+        - cd ..
+        # Install module
         - cd validation
         - NODE_ENV=development npm install
 
@@ -67,12 +73,6 @@ build_validation:
             - validation/node_modules
             - validation/dist
     script:
-        # Build local peer dependencies
-        - cd utils
-        - NODE_ENV=development npm install
-        - npm run build
-        - cd ..
-        # Build module
         - cd validation
         - npm run prepare
         - npm run build
