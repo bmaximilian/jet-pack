@@ -34,7 +34,7 @@ function mapStoreToComponent(
  * @param {StoreMapper} storeMapper
  */
 export function mapStoreToProps(storeMapper: StoreMapper) {
-    return (WrappedComponent: Component) => (props: any) => (
+    return (WrappedComponent: any) => (props: any) => (
         <ReactReduxContext.Consumer>
             {({ store }) => mapStoreToComponent(
                 store as StoreService,

@@ -8,9 +8,9 @@
     "prepare": "npm ln ../store",
     "build": "tsc",
     "lint": "./node_modules/.bin/tslint --project tsconfig.json --config tslint.json",
-    "test:unit": "nyc mocha src/**/*.unit.test.ts --recursive --require ts-node/register --require source-map-support/register",
-    "test:integration": "nyc mocha src/**/*.integration.test.ts --recursive --require ts-node/register --require source-map-support/register",
-    "test": "nyc mocha src/**/*.test.ts --recursive --require ts-node/register --require source-map-support/register"
+    "test:unit": "nyc mocha src/**/*.unit.test.ts --recursive --require ts-node/register --require source-map-support/register --require jsdom-global/register --require ./unitTestSetup.ts",
+    "test:integration": "nyc mocha src/**/*.integration.test.ts --recursive --require ts-node/register --require source-map-support/register --require jsdom-global/register --require ./unitTestSetup.ts",
+    "test": "nyc mocha src/**/*.test.ts src/**/*.test.tsx --recursive --require ts-node/register --require source-map-support/register --require jsdom-global/register --require ./unitTestSetup.ts"
   },
   "repository": {
     "type": "git",
@@ -37,16 +37,24 @@
   "homepage": "https://github.com/bmaximilian/jet-pack/blob/master/react-store/README.md",
   "devDependencies": {
     "@types/chai": "^4.1.7",
+    "@types/enzyme": "^3.9.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/jsdom": "^12.2.3",
     "@types/mocha": "^5.2.6",
     "@types/react": "16.8.12",
     "@types/react-redux": "^7.0.6",
     "chai": "^4.2.0",
     "coveralls": "^3.0.3",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.2",
     "eslint-plugin-compat": "^3.1.1",
+    "jsdom": "^15.1.0",
+    "jsdom-global": "^3.0.2",
     "mocha": "^6.1.4",
     "nyc": "^14.1.0",
     "prettier": "^1.17.0",
     "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
     "source-map-support": "^0.5.12",
@@ -79,19 +87,24 @@
       "text-summary",
       "html"
     ],
-    "include": [
-      "src/**/*.test.ts"
-    ],
     "extension": [
       ".ts",
       ".tsx"
     ],
     "exclude": [
       "dist",
-      "src/index.*"
+      ".nyc_output",
+      "coverage",
+      "node_modules",
+      "unitTestSetup.ts",
+      "**/index.*",
+      "**/**/*.test.ts",
+      "**/**/*.spec.ts",
+      "**/**/*.test.tsx",
+      "**/**/*.spec.tsx"
     ],
     "cache": true,
-    "all": false,
+    "all": true,
     "report-dir": "./coverage"
   }
 }
