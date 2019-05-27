@@ -760,6 +760,10 @@ install_validation:
     paths:
       - validation/node_modules
   script:
+    - cd utils
+    - NODE_ENV=development npm install
+    - npm run build
+    - cd ..
     - cd validation
     - NODE_ENV=development npm install
 lint_validation:
@@ -814,10 +818,6 @@ build_validation:
       - validation/node_modules
       - validation/dist
   script:
-    - cd utils
-    - NODE_ENV=development npm install
-    - npm run build
-    - cd ..
     - cd validation
     - npm run prepare
     - npm run build
