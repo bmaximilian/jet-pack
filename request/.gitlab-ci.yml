@@ -8,8 +8,17 @@ install_request:
         paths:
             - request/node_modules
     script:
+        # Build local peer dependencies
+        - cd utils
+        - NODE_ENV=development npm install
+        - npm run build
+        - cd ..
+        # Install module
         - cd request
         - NODE_ENV=development npm install
+        - rm -rf node_modules/@jet-pack/utils
+        - mkdir -p node_modules/@jet-pack/utils
+        - cp -rf ../utils node_modules/@jet-pack/
 
 lint_request:
     stage: lint
@@ -67,14 +76,7 @@ build_request:
             - request/node_modules
             - request/dist
     script:
-        # Build local peer dependencies
-        - cd utils
-        - NODE_ENV=development npm install
-        - npm run build
-        - cd ..
-        # Build module
         - cd request
-        - npm run prepare
         - npm run build
 
 dry-pack_request:

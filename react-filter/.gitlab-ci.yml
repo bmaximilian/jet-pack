@@ -8,8 +8,17 @@ install_react-filter:
         paths:
             - react-filter/node_modules
     script:
+        # Build local peer dependencies
+        - cd utils
+        - NODE_ENV=development npm install
+        - npm run build
+        - cd ..
+        # Install module
         - cd react-filter
         - NODE_ENV=development npm install
+        - rm -rf node_modules/@jet-pack/utils
+        - mkdir -p node_modules/@jet-pack/utils
+        - cp -rf ../utils node_modules/@jet-pack/
 
 lint_react-filter:
     stage: lint
@@ -67,14 +76,7 @@ build_react-filter:
             - react-filter/node_modules
             - react-filter/dist
     script:
-        # Build local peer dependencies
-        - cd utils
-        - NODE_ENV=development npm install
-        - npm run build
-        - cd ..
-        # Build module
         - cd react-filter
-        - npm run prepare
         - npm run build
 
 dry-pack_react-filter:
