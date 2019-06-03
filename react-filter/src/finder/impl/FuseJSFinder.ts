@@ -5,8 +5,8 @@
  */
 import Fuse, { FuseOptions } from 'fuse.js';
 import { assign, isEmpty } from 'lodash';
-import { Finder } from './Finder';
-import { IFinderOptions } from './IFinderOptions';
+import { Finder } from '../Finder';
+import { IFinderOptions } from '../IFinderOptions';
 
 export interface IFuseJSFinderOptions<T> extends IFinderOptions {
     fuseOptions: FuseOptions<T>;
@@ -87,12 +87,12 @@ export class FuseJSFinder<T, O extends IFuseJSFinderOptions<T>> extends Finder<T
      * @param {SearchOpts} options
      * @return {T[]} : The results
      */
-    public execute(query: string, options?: ISearchOpts): T[] {
-        if (isEmpty(query) && this.options.showAllOnEmptyQuery) {
+    public execute(query?: string, options?: ISearchOpts): T[] {
+        if ((!query || isEmpty(query)) && this.options && this.options.showAllOnEmptyQuery) {
             return this.items;
         }
 
-        return this.fuse.search(query, options);
+        return this.fuse.search(query as string, options);
     }
 
     /**
@@ -101,7 +101,7 @@ export class FuseJSFinder<T, O extends IFuseJSFinderOptions<T>> extends Finder<T
      * @return {Fuse<T>} : The new fuse instance
      */
     private createFuse(): Fuse<T> {
-        const combinedOptions = assign({}, this.defaultSearchOptions, this.options.fuseOptions);
+        const combinedOptions = assign({}, this.defaultSearchOptions, this.options ? this.options.fuseOptions : {});
 
         if (!combinedOptions.keys || isEmpty(combinedOptions.keys)) {
             combinedOptions.keys = this.defaultKeys;

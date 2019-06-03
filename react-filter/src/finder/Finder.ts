@@ -5,13 +5,13 @@
  */
 import { IFinder } from './IFinder';
 
-export abstract class Finder<T, O = any, S = any> implements IFinder<T, O, S> {
+export abstract class Finder<T, O = any|undefined, S = any> implements IFinder<T, O, S> {
     /**
      * The search options
      *
      * @type {any}
      */
-    protected options: O;
+    protected options: O|undefined;
 
     /**
      * The haystack to search
@@ -25,7 +25,7 @@ export abstract class Finder<T, O = any, S = any> implements IFinder<T, O, S> {
      *
      * @param {O} options
      */
-    constructor(options: O) {
+    constructor(options?: O) {
         this.options = options;
     }
 

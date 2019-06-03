@@ -5,6 +5,6 @@
  */
 
 export { Finder } from './Finder';
-export { FuseJSFinder, IFuseJSFinderOptions, ISearchOpts } from './FuseJSFinder';
+export { FuseJSFinder, IFuseJSFinderOptions, ISearchOpts } from './impl/FuseJSFinder';
 export { IFinder } from './IFinder';
 export { IFinderOptions } from './IFinderOptions';

@@ -10,7 +10,7 @@ import { get, isFunction } from 'lodash';
 import React, { Component } from 'react';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Finder } from '../finder/Finder';
-import { FuseJSFinder } from '../finder/FuseJSFinder';
+import { FuseJSFinder } from '../finder/impl/FuseJSFinder';
 
 export interface IWithLocalSearchProps<T> extends IWithLocalSearchPropsExternal<T> {
     handleQueryChange: (newQuery: string) => void;
@@ -21,12 +21,13 @@ export interface IWithLocalSearchProps<T> extends IWithLocalSearchPropsExternal<
 }
 
 export interface IWithLocalSearchPropsExternal<T> {
-    searchWhenTyping: boolean;
-    fuseOptions: FuseOptions<T>;
+    searchWhenTyping?: boolean;
+    fuseOptions?: FuseOptions<T>;
     initialQuery?: string;
     showAllOnEmptyQuery?: boolean;
     onQueryChange?: (query: string) => void;
     finderInstance?: Finder<T>;
+    [key: string]: any;
 }
 
 export interface ILocalSearchTraitState<T> {
@@ -35,7 +36,7 @@ export interface ILocalSearchTraitState<T> {
 }
 
 export function withLocalSearch<
-    P extends IWithLocalSearchProps<T>,
+    P extends IWithLocalSearchPropsExternal<T>,
     T = any
 >(
     toSearch: string,
@@ -43,7 +44,7 @@ export function withLocalSearch<
     finderInstanceCreator?: (props: P) => Finder<T>,
     composeQueryFromProps?: (props: P) => string,
 ) {
-    return function wrapLocalSearchAround(WrappedComponent: React.ComponentType<P>) {
+    return function wrapLocalSearchAround(WrappedComponent: any) {
         const traitComponent = class LocalSearchTrait extends Component<P, ILocalSearchTraitState<T>> {
             /**
              * Default props of LocalSearchTrait
@@ -83,7 +84,7 @@ export function withLocalSearch<
                     this.finder = finderInstanceCreator(this.props);
                 } else {
                     this.finder = new FuseJSFinder({
-                        fuseOptions: this.props.fuseOptions,
+                        fuseOptions: (this.props.fuseOptions || {}) as FuseOptions<T>,
                         showAllOnEmptyQuery: this.props.showAllOnEmptyQuery,
                     }, defaultKeys);
                 }

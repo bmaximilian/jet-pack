@@ -13,17 +13,17 @@ import { async } from 'rxjs/internal/scheduler/async';
 import { throttleTime } from 'rxjs/operators';
 import { Finder } from '../finder/Finder';
 import { updateBrowserSearchQueryString } from '../util/updateBrowserSearchQueryString';
-import { IWithLocalSearchProps, withLocalSearch } from './withLocalSearch';
+import { IWithLocalSearchPropsExternal, withLocalSearch } from './withLocalSearch';
 
 type WithAttachedLocalSearchPropsQueryChangeOmitted<T> =
     Omit<IWithAttachedLocalSearchPropsExternal<T>, 'handleQueryChange'> &
-    Omit<IWithLocalSearchProps<T>, 'handleQueryChange'>;
+    Omit<IWithLocalSearchPropsExternal<T>, 'handleQueryChange'>;
 
 export interface IWithAttachedLocalSearchProps<T> extends WithAttachedLocalSearchPropsQueryChangeOmitted<T> {
     handleQueryChange: (e: SyntheticEvent) => void;
 }
 
-interface IWithAttachedLocalSearchPropsExternal<T> extends IWithLocalSearchProps<T> {
+interface IWithAttachedLocalSearchPropsExternal<T> extends IWithLocalSearchPropsExternal<T> {
     history: History,
     location: Location,
 }
@@ -38,7 +38,7 @@ export function withAttachedLocalSearch<
     composeQueryFromProps?: (props: P) => string,
 ) {
     return function wrapLocalSearchAround<U extends IWithAttachedLocalSearchProps<T>>(
-        WrappedComponent: React.ComponentType<P>,
+        WrappedComponent: any,
     ) {
         const traitComponent = class AttachedLocalSearchTrait extends Component<P> {
             /**
