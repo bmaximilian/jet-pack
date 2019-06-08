@@ -43,18 +43,6 @@ test_node-8_react-filter:
         - cd react-filter
         - npm test
 
-test_node-6_react-filter:
-    stage: test
-    image: node:6
-    cache:
-        key: react-filter-${CI_COMMIT_REF_SLUG}
-        policy: pull
-        paths:
-            - react-filter/node_modules
-    script:
-        - cd react-filter
-        - npm test
-
 test_node-10_react-filter:
     stage: test
     image: node:10

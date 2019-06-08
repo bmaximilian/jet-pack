@@ -6,3 +6,18 @@
 [![License](https://img.shields.io/github/license/bmaximilian/jet-pack.svg)](https://opensource.org/licenses/MIT)
 
 Search/Filter data coming from a react prop
+
+## Table of Contents
+
+* [Installation](#installation)
+* [Finder](#finder)
+    * [The Finder base class](#the-finderbase-class)
+    * [FuseJSFinder](#fusejsfinder)
+* [Functions](#functions)
+    * [withLocalSearch](#withlocalsearch)
+    * [withAttachedLocalSearch](#withattachedlocalsearch)
+
+## Installation
+```
+npm i --save @jet-pack/react-filter
+```
