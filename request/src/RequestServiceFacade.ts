@@ -12,7 +12,7 @@ import { AfterReceiveMiddlewareManager } from './manager/middleware/AfterReceive
 import { BeforeSendMiddlewareManager } from './manager/middleware/BeforeSendMiddlewareManager';
 import { MiddlewareFunction } from './manager/middleware/MiddlewareManager';
 import { IHeaders, RequestHeaderManager } from './manager/RequestHeaderManager';
-import { RequestMethodManager } from './manager/RequestMethodManager';
+import { Method, RequestMethodManager } from './manager/RequestMethodManager';
 import { IUrlParameters, RequestUrlManager } from './manager/RequestUrlManager';
 import { FetchRequestSender } from './sender/FetchRequestSender';
 import { IMiddlewareOptions, IRequestBody, ISenderOptions } from './sender/RequestSender';
@@ -119,7 +119,7 @@ export class RequestServiceFacade {
      * @param {String} method : String : The method to set the header for
      * @returns {void}
      */
-    public setDefaultHeader(key: string, value: string, method?: string): () => void {
+    public setDefaultHeader(key: string, value: string, method?: Method): () => void {
         this.requestHeaderManager.setDefaultHeader(key, value, method);
         return this.removeDefaultHeader.bind(this, key, method);
     }
@@ -132,7 +132,7 @@ export class RequestServiceFacade {
      * @param {String} method : String : The method to remove the header for
      * @returns {void}
      */
-    public removeDefaultHeader(key: string, method?: string): void {
+    public removeDefaultHeader(key: string, method?: Method): void {
         this.requestHeaderManager.removeDefaultHeader(key, method);
     }
 
@@ -143,7 +143,7 @@ export class RequestServiceFacade {
      * @param {String} method : String : The method to get the headers for
      * @return {Object} : The matching headers
      */
-    public getHeadersForMethod(method: string) {
+    public getHeadersForMethod(method: Method) {
         return this.requestHeaderManager.getHeadersForMethod(method);
     }
 

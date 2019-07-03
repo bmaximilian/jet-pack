@@ -10,7 +10,7 @@
     "lint": "./node_modules/.bin/tslint --project tsconfig.json --config tslint.json",
     "test:unit": "nyc mocha src/**/*.unit.test.ts --recursive --require ts-node/register --require source-map-support/register",
     "test:integration": "nyc mocha src/**/*.integration.test.ts --recursive --require ts-node/register --require source-map-support/register",
-    "test": "nyc mocha src/**/*.test.ts --recursive --require ts-node/register --require source-map-support/register"
+    "test": "nyc mocha src/**/*.test.ts src/**/**/*.test.ts --recursive --require ts-node/register --require source-map-support/register"
   },
   "repository": {
     "type": "git",
@@ -68,19 +68,21 @@
       "text-summary",
       "html"
     ],
-    "include": [
-      "src/**/*.test.ts"
-    ],
     "extension": [
       ".ts",
       ".tsx"
     ],
     "exclude": [
       "dist",
-      "src/index.*"
+      ".nyc_output",
+      "coverage",
+      "node_modules",
+      "**/index.*",
+      "**/**/*.test.ts",
+      "**/**/*.spec.ts"
     ],
     "cache": true,
-    "all": false,
+    "all": true,
     "report-dir": "./coverage"
   },
   "dependencies": {

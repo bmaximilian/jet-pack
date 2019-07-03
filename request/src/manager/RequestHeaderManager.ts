@@ -20,7 +20,7 @@ export interface IHeaders {
     [key: string]: string;
 }
 
-interface IMethodSpecificHeaders {
+export interface IMethodSpecificHeaders {
     GET: IHeaders;
     POST: IHeaders;
     PUT: IHeaders;
@@ -63,7 +63,7 @@ export class RequestHeaderManager {
      * @param {RequestMethodManager} requestMethodManager : RequestMethodManager
      * @param {Object} headers : Object : The default headers
      */
-    constructor(requestMethodManager: RequestMethodManager, headers: IMethodSpecificHeaders) {
+    constructor(requestMethodManager: RequestMethodManager, headers: Partial<IMethodSpecificHeaders> = {}) {
         this.requestMethodManager = requestMethodManager;
         this.headers = assign(
             {},
@@ -81,7 +81,7 @@ export class RequestHeaderManager {
      * @param {String} method : String : The method to set the header for
      * @returns {void}
      */
-    public setDefaultHeader(key: string, value: string, method?: string) {
+    public setDefaultHeader(key: string, value: string, method?: keyof IMethodSpecificHeaders) {
         const parsedMethod = toUpper(method);
         if (!isString(key)) throw new Error('The key must be a string');
         if (!isString(value)) throw new Error('The value must be a string');
@@ -104,7 +104,7 @@ export class RequestHeaderManager {
      * @param {String} method : String : The method to remove the header for
      * @returns {void}
      */
-    public removeDefaultHeader(key: string, method?: string) {
+    public removeDefaultHeader(key: string, method?: keyof IMethodSpecificHeaders) {
         const parsedMethod = toUpper(method);
         if (!isString(key)) throw new Error('The key must be a string');
         this.requestMethodManager.validateMethod(parsedMethod);
@@ -130,7 +130,7 @@ export class RequestHeaderManager {
      * @param {Object} customHeaders : Object : The headers that should be assigned
      * @return {Object} : The matching headers
      */
-    public getHeadersForMethod(method: string, customHeaders: IHeaders = {}) {
+    public getHeadersForMethod(method: keyof IMethodSpecificHeaders, customHeaders: IHeaders = {}) {
         const parsedMethod = toUpper(method);
         this.requestMethodManager.validateMethod(parsedMethod);
 

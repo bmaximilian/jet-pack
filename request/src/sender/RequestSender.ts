@@ -219,7 +219,7 @@ export abstract class RequestSender<ResponseContainer> {
      * @return {Array} : The parsed method, the middleware options and the request parameters
      */
     protected getRequestParameters(
-        method: string,
+        method: Method,
         endpoint: string,
         body: IRequestBody,
         params: IUrlParameters,
@@ -254,7 +254,7 @@ export abstract class RequestSender<ResponseContainer> {
      * @return {Array|null} : The parsed method, the middleware options and the request parameters
      */
     protected prepareRequest(
-        method: string,
+        method: Method,
         endpoint: string,
         body: IRequestBody = {},
         params: IUrlParameters = {},

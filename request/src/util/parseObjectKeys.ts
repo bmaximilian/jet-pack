@@ -32,5 +32,5 @@ export function parseObjectKeys<In = any, Out = any>(
             break;
     }
 
-    return objectWithParsedKeys as any;
+    return objectWithParsedKeys as unknown as Out;
 }
