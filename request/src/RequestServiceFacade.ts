@@ -97,7 +97,7 @@ export class RequestServiceFacade {
      */
     public addBeforeSendMiddleware(middleware: MiddlewareFunction<IMiddlewareOptions>): () => void {
         this.beforeSendMiddlewareManager.addMiddleware(middleware);
-        return this.removeBeforeSendMiddleware.bind(this, middleware);
+        return () => this.removeBeforeSendMiddleware(middleware);
     }
 
     /**
@@ -121,7 +121,7 @@ export class RequestServiceFacade {
      */
     public setDefaultHeader(key: string, value: string, method?: Method): () => void {
         this.requestHeaderManager.setDefaultHeader(key, value, method);
-        return this.removeDefaultHeader.bind(this, key, method);
+        return () => this.removeDefaultHeader(key, method);
     }
 
     /**
@@ -155,7 +155,7 @@ export class RequestServiceFacade {
      */
     public addAfterReceiveMiddleware(middleware: MiddlewareFunction<IMiddlewareOptions, any>): () => void {
         this.afterReceiveMiddlewareManager.addMiddleware(middleware);
-        return this.removeAfterReceiveMiddleware.bind(this, middleware);
+        return () => this.removeAfterReceiveMiddleware(middleware);
     }
 
     /**
