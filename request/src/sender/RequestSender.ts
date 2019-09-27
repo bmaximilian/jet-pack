@@ -11,34 +11,34 @@ import {
     toUpper,
 } from 'lodash';
 import {
-    IHeaders,
-    IUrlParameters,
+    Headers,
     Method,
     RequestHeaderManager,
     RequestMethodManager,
     RequestUrlManager,
+    UrlParameters,
 } from '../manager';
 import { AfterReceiveMiddlewareManager, BeforeSendMiddlewareManager } from '../manager/middleware';
 import { ConversionMode, parseObjectKeys } from '../util/parseObjectKeys';
 
-export interface ISenderOptions {
+export interface SenderOptions {
     beforeSendConversionMode: ConversionMode;
     afterReceiveConversionMode: ConversionMode;
     responseTimeout: number;
 }
 
-export interface IMiddlewareOptions {
+export interface MiddlewareOptions {
     method: string;
     endpoint: string;
     url: string;
-    body: IRequestBody;
-    parsedBody: IRequestBody|null;
-    rawParameters: IUrlParameters;
-    headers: IHeaders;
-    options: ISenderOptions;
+    body: RequestBody;
+    parsedBody: RequestBody|null;
+    rawParameters: UrlParameters;
+    headers: Headers;
+    options: SenderOptions;
 }
 
-export interface IRequestBody {
+export interface RequestBody {
     [key: string]: any;
 }
 
@@ -68,19 +68,19 @@ export abstract class RequestSender<ResponseContainer> {
      * @protected
      * @type {BeforeSendMiddlewareManager}
      */
-    protected beforeSendMiddlewareManager: BeforeSendMiddlewareManager<IMiddlewareOptions>;
+    protected beforeSendMiddlewareManager: BeforeSendMiddlewareManager<MiddlewareOptions>;
 
     /**
      * @protected
      * @type {AfterReceiveMiddlewareManager}
      */
-    protected afterReceiveMiddlewareManager: AfterReceiveMiddlewareManager<any, IMiddlewareOptions>;
+    protected afterReceiveMiddlewareManager: AfterReceiveMiddlewareManager<any, MiddlewareOptions>;
 
     /**
      * @protected
      * @type {Object}
      */
-    protected defaultOptions: ISenderOptions = {
+    protected defaultOptions: SenderOptions = {
         beforeSendConversionMode: 'default',
         afterReceiveConversionMode: 'default',
         responseTimeout: 5000,
@@ -93,9 +93,9 @@ export abstract class RequestSender<ResponseContainer> {
         requestMethodManager: RequestMethodManager,
         requestUrlManager: RequestUrlManager,
         requestHeaderManager: RequestHeaderManager,
-        beforeSendMiddlewareManager: BeforeSendMiddlewareManager<IMiddlewareOptions>,
-        afterReceiveMiddlewareManager: AfterReceiveMiddlewareManager<any, IMiddlewareOptions>,
-        defaultOptions: Partial<ISenderOptions> = {},
+        beforeSendMiddlewareManager: BeforeSendMiddlewareManager<MiddlewareOptions>,
+        afterReceiveMiddlewareManager: AfterReceiveMiddlewareManager<any, MiddlewareOptions>,
+        defaultOptions: Partial<SenderOptions> = {},
     ) {
         this.requestMethodManager = requestMethodManager;
         this.requestUrlManager = requestUrlManager;
@@ -117,9 +117,9 @@ export abstract class RequestSender<ResponseContainer> {
      */
     public get(
         url: string,
-        params: IUrlParameters = {},
-        headers: IHeaders = {},
-        options: Partial<ISenderOptions> = {},
+        params: UrlParameters = {},
+        headers: Headers = {},
+        options: Partial<SenderOptions> = {},
     ) {
         return this.sendRequest('GET', url, {}, params, headers, options);
     }
@@ -137,10 +137,10 @@ export abstract class RequestSender<ResponseContainer> {
      */
     public post(
         url: string,
-        body: IRequestBody = {},
-        params: IUrlParameters = {},
-        headers: IHeaders = {},
-        options: Partial<ISenderOptions> = {},
+        body: RequestBody = {},
+        params: UrlParameters = {},
+        headers: Headers = {},
+        options: Partial<SenderOptions> = {},
     ) {
         return this.sendRequest('POST', url, body, params, headers, options);
     }
@@ -158,10 +158,10 @@ export abstract class RequestSender<ResponseContainer> {
      */
     public put(
         url: string,
-        body: IRequestBody = {},
-        params: IUrlParameters = {},
-        headers: IHeaders = {},
-        options: Partial<ISenderOptions> = {},
+        body: RequestBody = {},
+        params: UrlParameters = {},
+        headers: Headers = {},
+        options: Partial<SenderOptions> = {},
     ) {
         return this.sendRequest('PUT', url, body, params, headers, options);
     }
@@ -179,10 +179,10 @@ export abstract class RequestSender<ResponseContainer> {
      */
     public patch(
         url: string,
-        body: IRequestBody = {},
-        params: IUrlParameters = {},
-        headers: IHeaders = {},
-        options: Partial<ISenderOptions> = {},
+        body: RequestBody = {},
+        params: UrlParameters = {},
+        headers: Headers = {},
+        options: Partial<SenderOptions> = {},
     ) {
         return this.sendRequest('PATCH', url, body, params, headers, options);
     }
@@ -199,9 +199,9 @@ export abstract class RequestSender<ResponseContainer> {
      */
     public delete(
         url: string,
-        params: IUrlParameters = {},
-        headers: IHeaders = {},
-        options: Partial<ISenderOptions> = {},
+        params: UrlParameters = {},
+        headers: Headers = {},
+        options: Partial<SenderOptions> = {},
     ) {
         return this.sendRequest('DELETE', url, {}, params, headers, options);
     }
@@ -221,10 +221,10 @@ export abstract class RequestSender<ResponseContainer> {
     protected getRequestParameters(
         method: Method,
         endpoint: string,
-        body: IRequestBody,
-        params: IUrlParameters,
-        headers: IHeaders,
-        options: Partial<ISenderOptions>,
+        body: RequestBody,
+        params: UrlParameters,
+        headers: Headers,
+        options: Partial<SenderOptions>,
     ): any[] {
         const beforeSendConversionMode = get(options, 'beforeSendConversionMode', 'default');
 
@@ -235,7 +235,7 @@ export abstract class RequestSender<ResponseContainer> {
 
         // Add the body as second parameter for all POST, PUT, PATCH
         if (!includes([this.requestMethodManager.methods.GET, this.requestMethodManager.methods.DELETE], method)) {
-            parameters.splice(1, 0, parseObjectKeys<IRequestBody>(body, beforeSendConversionMode));
+            parameters.splice(1, 0, parseObjectKeys<RequestBody>(body, beforeSendConversionMode));
         }
 
         return parameters;
@@ -256,10 +256,10 @@ export abstract class RequestSender<ResponseContainer> {
     protected prepareRequest(
         method: Method,
         endpoint: string,
-        body: IRequestBody = {},
-        params: IUrlParameters = {},
-        headers: IHeaders = {},
-        options: Partial<ISenderOptions> = {},
+        body: RequestBody = {},
+        params: UrlParameters = {},
+        headers: Headers = {},
+        options: Partial<SenderOptions> = {},
     ) {
         const parsedMethod = toUpper(method);
         this.requestMethodManager.validateMethod(parsedMethod);
@@ -275,7 +275,7 @@ export abstract class RequestSender<ResponseContainer> {
             combinedOptions,
         );
 
-        const middlewareOptions: IMiddlewareOptions = {
+        const middlewareOptions: MiddlewareOptions = {
             body,
             endpoint,
             method,
@@ -308,9 +308,9 @@ export abstract class RequestSender<ResponseContainer> {
     protected abstract sendRequest(
         method: Method,
         endpoint: string,
-        body: IRequestBody,
-        params: IUrlParameters,
-        headers: IHeaders,
-        options: Partial<ISenderOptions>,
+        body: RequestBody,
+        params: UrlParameters,
+        headers: Headers,
+        options: Partial<SenderOptions>,
     ): ResponseContainer;
 }

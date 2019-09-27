@@ -8,7 +8,7 @@ import { isString } from 'lodash';
 import qs from 'qs';
 import { ConversionMode, parseObjectKeys } from '../util/parseObjectKeys';
 
-export interface IUrlParameters {
+export interface UrlParameters {
     [key: string]: any;
 }
 
@@ -60,7 +60,7 @@ export class RequestUrlManager {
      */
     public getUrlWithParameters(
         endpoint: string,
-        parameters: IUrlParameters,
+        parameters: UrlParameters,
         conversionMode: ConversionMode = 'default',
     ) {
         return this.getUrlFromEndpoint(endpoint) + this.parseUrlParameters(parameters, conversionMode);
@@ -83,7 +83,7 @@ export class RequestUrlManager {
      * @param {String} conversionMode : String : default, camelCase or snakeCase
      * @return {string} : The formatted query string
      */
-    private parseUrlParameters(parameters: IUrlParameters, conversionMode: ConversionMode = 'default'): string {
+    private parseUrlParameters(parameters: UrlParameters, conversionMode: ConversionMode = 'default'): string {
         return `?${qs.stringify(parseObjectKeys(parameters, conversionMode))}`;
     }
 }

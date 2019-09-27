@@ -16,16 +16,16 @@ import {
 } from 'lodash';
 import { RequestMethodManager } from './RequestMethodManager';
 
-export interface IHeaders {
+export interface Headers {
     [key: string]: string;
 }
 
-export interface IMethodSpecificHeaders {
-    GET: IHeaders;
-    POST: IHeaders;
-    PUT: IHeaders;
-    PATCH: IHeaders;
-    DELETE: IHeaders;
+export interface MethodSpecificHeaders {
+    GET: Headers;
+    POST: Headers;
+    PUT: Headers;
+    PATCH: Headers;
+    DELETE: Headers;
 }
 
 /**
@@ -42,7 +42,7 @@ export class RequestHeaderManager {
      * @private
      * @type {Object}
      */
-    private headers: IMethodSpecificHeaders = {
+    private headers: MethodSpecificHeaders = {
         GET: {},
         POST: {
             'Content-Type': 'application/json; charset=UTF-8',
@@ -63,7 +63,7 @@ export class RequestHeaderManager {
      * @param {RequestMethodManager} requestMethodManager : RequestMethodManager
      * @param {Object} headers : Object : The default headers
      */
-    constructor(requestMethodManager: RequestMethodManager, headers: Partial<IMethodSpecificHeaders> = {}) {
+    constructor(requestMethodManager: RequestMethodManager, headers: Partial<MethodSpecificHeaders> = {}) {
         this.requestMethodManager = requestMethodManager;
         this.headers = assign(
             {},
@@ -81,7 +81,7 @@ export class RequestHeaderManager {
      * @param {String} method : String : The method to set the header for
      * @returns {void}
      */
-    public setDefaultHeader(key: string, value: string, method?: keyof IMethodSpecificHeaders) {
+    public setDefaultHeader(key: string, value: string, method?: keyof MethodSpecificHeaders) {
         const parsedMethod = toUpper(method);
         if (!isString(key)) throw new Error('The key must be a string');
         if (!isString(value)) throw new Error('The value must be a string');
@@ -104,7 +104,7 @@ export class RequestHeaderManager {
      * @param {String} method : String : The method to remove the header for
      * @returns {void}
      */
-    public removeDefaultHeader(key: string, method?: keyof IMethodSpecificHeaders) {
+    public removeDefaultHeader(key: string, method?: keyof MethodSpecificHeaders) {
         const parsedMethod = toUpper(method);
         if (!isString(key)) throw new Error('The key must be a string');
         this.requestMethodManager.validateMethod(parsedMethod);
@@ -130,7 +130,7 @@ export class RequestHeaderManager {
      * @param {Object} customHeaders : Object : The headers that should be assigned
      * @return {Object} : The matching headers
      */
-    public getHeadersForMethod(method: keyof IMethodSpecificHeaders, customHeaders: IHeaders = {}) {
+    public getHeadersForMethod(method: keyof MethodSpecificHeaders, customHeaders: Headers = {}) {
         const parsedMethod = toUpper(method);
         this.requestMethodManager.validateMethod(parsedMethod);
 

@@ -5,5 +5,5 @@
  */
 
 export { FetchRequestSender } from './FetchRequestSender';
-export { IMiddlewareOptions, ISenderOptions, IRequestBody, RequestSender } from './RequestSender';
-export { RxRequestSender } from './RxRequestSender';
+export { MiddlewareOptions, SenderOptions, RequestBody, RequestSender } from './RequestSender';
+export { AjaxResponse, RxRequestSender } from './RxRequestSender';

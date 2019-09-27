@@ -5,13 +5,13 @@
  */
 
 import { get, isArray, toUpper } from 'lodash';
-import { IHeaders, IUrlParameters, Method } from '../manager';
-import { IRequestBody, ISenderOptions, RequestSender } from './RequestSender';
+import { Headers, Method, UrlParameters } from '../manager';
+import { RequestBody, RequestSender, SenderOptions } from './RequestSender';
 
 /**
  * @class FetchRequestSender
  */
-export class FetchRequestSender extends RequestSender<Promise<any>> {
+export class FetchRequestSender<Response> extends RequestSender<Promise<Response>> {
     /**
      * Sends a request
      *
@@ -27,10 +27,10 @@ export class FetchRequestSender extends RequestSender<Promise<any>> {
     protected sendRequest(
         method: Method,
         endpoint: string,
-        body: IRequestBody = {},
-        params: IUrlParameters = {},
-        headers: IHeaders = {},
-        options: Partial<ISenderOptions> = {},
+        body: RequestBody = {},
+        params: UrlParameters = {},
+        headers: Headers = {},
+        options: Partial<SenderOptions> = {},
     ): Promise<any> {
         const preparedRequest = this.prepareRequest(
             method,
