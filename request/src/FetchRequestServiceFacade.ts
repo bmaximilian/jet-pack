@@ -3,7 +3,6 @@
  *
  * @author Maximilian Beck <contact@maximilianbeck.de>
  */
-import { Observable } from 'rxjs';
 import { RequestServiceFacade } from './RequestServiceFacade';
 import { FetchRequestSender, RequestSender } from './sender';
 

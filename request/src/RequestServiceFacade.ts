@@ -7,7 +7,6 @@
 import {
     get,
 } from 'lodash';
-import { Observable } from 'rxjs';
 import {
     Headers,
     Method,
@@ -176,7 +175,7 @@ export abstract class RequestServiceFacade<Response> {
      * @param {Object} params : Object : URL parameters
      * @param {Object} headers : Object : Headers for the request
      * @param {Object} options : Object : Options
-     * @returns {Observable<AjaxResponse>} : Returns an Observable sending the request
+     * @returns {Response} : Returns the response
      */
     public get(
         url: string,
@@ -195,7 +194,7 @@ export abstract class RequestServiceFacade<Response> {
      * @param {Object} params : Object : URL parameters
      * @param {Object} headers : Object : Headers for the request
      * @param {Object} options : Object : Options
-     * @returns {Observable<AjaxResponse>} : Returns an Observable sending the request
+     * @returns {Response} : Returns the response
      */
     public post(
         url: string,
@@ -215,7 +214,7 @@ export abstract class RequestServiceFacade<Response> {
      * @param {Object} params : Object : URL parameters
      * @param {Object} headers : Object : Headers for the request
      * @param {Object} options : Object : Options
-     * @returns {Observable<AjaxResponse>} : Returns an Observable sending the request
+     * @returns {Response} : Returns the response
      */
     public put(
         url: string,
@@ -235,7 +234,7 @@ export abstract class RequestServiceFacade<Response> {
      * @param {Object} params : Object : URL parameters
      * @param {Object} headers : Object : Headers for the request
      * @param {Object} options : Object : Options
-     * @returns {Observable<AjaxResponse>} : Returns an Observable sending the request
+     * @returns {Response} : Returns the response
      */
     public patch(
         url: string,
@@ -254,7 +253,7 @@ export abstract class RequestServiceFacade<Response> {
      * @param {Object} params : Object : URL parameters
      * @param {Object} headers : Object : Headers for the request
      * @param {Object} options : Object : Options
-     * @returns {Observable<AjaxResponse>} : Returns an Observable sending the request
+     * @returns {Response} : Returns the response
      */
     public delete(
         url: string,
