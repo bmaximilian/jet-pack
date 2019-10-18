@@ -84,10 +84,10 @@
   "nyc": {
     "check-coverage": true,
     "per-file": true,
-    "lines": 58,
-    "statements": 58,
-    "functions": 46,
-    "branches": 34,
+    "lines": 75,
+    "statements": 75,
+    "functions": 65,
+    "branches": 45,
     "reporter": [
       "lcov",
       "text-summary",

@@ -6,21 +6,36 @@
 
 import { get, isArray, toLower } from 'lodash';
 import {
-    noop,
+    NEVER,
     Observable,
-    of,
     race,
     timer,
 } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { map } from 'rxjs/operators';
-import { IHeaders, IUrlParameters, Method } from '../manager';
-import { IRequestBody, ISenderOptions, RequestSender } from './RequestSender';
+import { Headers, Method, UrlParameters } from '../manager';
+import { RequestBody, RequestSender, SenderOptions } from './RequestSender';
+
+export interface AjaxResponse<Response> {
+    /** @type {number} The HTTP status code */
+    status: number;
+
+    /** @type {string|ArrayBuffer|Document|object|any} The response data */
+    response: Response|null;
+
+    /** @type {string} The raw responseText */
+    responseText: string;
+
+    /** @type {string} The responseType (e.g. 'json', 'arraybuffer', or 'xml') */
+    responseType: string;
+
+    [key: string]: any;
+}
 
 /**
  * @class RxRequestSender
  */
-export class RxRequestSender extends RequestSender<Observable<any>> {
+export class RxRequestSender<Response> extends RequestSender<Observable<AjaxResponse<Response>>> {
     /**
      * Sends a post request
      *
@@ -36,11 +51,11 @@ export class RxRequestSender extends RequestSender<Observable<any>> {
     protected sendRequest(
         method: Method,
         endpoint: string,
-        body: IRequestBody = {},
-        params: IUrlParameters = {},
-        headers: IHeaders = {},
-        options: Partial<ISenderOptions> = {},
-    ) {
+        body: RequestBody = {},
+        params: UrlParameters = {},
+        headers: Headers = {},
+        options: Partial<SenderOptions> = {},
+    ): Observable<AjaxResponse<Response>> {
         const preparedRequest = this.prepareRequest(
             method,
             endpoint,
@@ -51,7 +66,7 @@ export class RxRequestSender extends RequestSender<Observable<any>> {
         );
 
         if (!isArray(preparedRequest) || preparedRequest.length < 2) {
-            return of({});
+            throw new Error('Cant prepare request.');
         }
 
         const [parsedMethod, middlewareOptions, ...parameters] = preparedRequest;
@@ -74,17 +89,20 @@ export class RxRequestSender extends RequestSender<Observable<any>> {
      * @param {Number} timeout : Number : The timeout in ms
      * @return {Observable}
      */
-    private getTimeoutObservable(timeout: number) {
-        const timeoutResponse = {
+    private getTimeoutObservable(timeout: number): Observable<AjaxResponse<Response>> {
+        const timeoutResponse: AjaxResponse<Response> = {
             timeout: true,
             status: 408,
+            response: null,
+            responseType: '',
+            responseText: '',
         };
 
         return timeout
             ? timer(timeout).pipe(
                 map(() => timeoutResponse),
             )
-            : noop();
+            : NEVER;
     }
 
     /**
@@ -94,10 +112,13 @@ export class RxRequestSender extends RequestSender<Observable<any>> {
      * @param {Number} timeout : Number : The timeout
      * @return {Observable<any>} : The race observable
      */
-    private raceAgainstTimeout(requestObservable: Observable<any>, timeout: number) {
+    private raceAgainstTimeout(
+        requestObservable: Observable<AjaxResponse<Response>>,
+        timeout: number,
+    ): Observable<AjaxResponse<Response>> {
         return race(
             requestObservable,
-            this.getTimeoutObservable(timeout) as Observable<any>,
+            this.getTimeoutObservable(timeout),
         );
     }
 }

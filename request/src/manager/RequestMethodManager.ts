@@ -7,7 +7,7 @@
 import { includes, isString } from 'lodash';
 
 export type Method = 'GET'|'POST'|'PUT'|'PATCH'|'DELETE';
-interface IMethods {
+interface Methods {
     GET: string;
     POST: string;
     PUT: string;
@@ -37,12 +37,12 @@ export class RequestMethodManager {
      * DELETE: String,
      * }} : The allowed methods
      */
-    public get methods(): IMethods {
+    public get methods(): Methods {
         const buffer: any = {};
         this.methodsArray.forEach((method: string) => {
             buffer[method] = method;
         });
-        return buffer as IMethods;
+        return buffer as Methods;
     }
 
     /**
