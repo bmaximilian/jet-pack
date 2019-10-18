@@ -8,6 +8,7 @@ import { expect } from 'chai';
 import 'mocha';
 import { RequestServiceFacade } from './RequestServiceFacade';
 import { RxRequestServiceFacade } from './RxRequestServiceFacade';
+import { RxRequestSender } from './sender';
 
 describe('RxRequestServiceFacade', () => {
     let requestService: any;
@@ -19,5 +20,9 @@ describe('RxRequestServiceFacade', () => {
     it('Should construct', () => {
         expect(requestService).to.be.instanceOf(RxRequestServiceFacade);
         expect(requestService).to.be.instanceOf(RequestServiceFacade);
+    });
+
+    it('Should create the rx request sender', () => {
+        expect(requestService.createRequestSender()).to.be.instanceOf(RxRequestSender);
     });
 });
