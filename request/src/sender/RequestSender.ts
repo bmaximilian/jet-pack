@@ -25,6 +25,9 @@ export interface SenderOptions {
     beforeSendConversionMode: ConversionMode;
     afterReceiveConversionMode: ConversionMode;
     responseTimeout: number;
+    responseType?: 'text' | 'blob' | 'json' | 'buffer';
+    sendRawBody?: boolean;
+    [key: string]: any;
 }
 
 export interface MiddlewareOptions {

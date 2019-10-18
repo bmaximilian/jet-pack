@@ -32,6 +32,24 @@ describe('RequestSender', () => {
 
     it('Should construct', () => {
         expect(requestSender).to.be.instanceOf(RequestSender);
+
+        const requestMethodManager = new RequestMethodManager();
+        const otherRequestSender: any = new TestRequestSender(
+            requestMethodManager,
+            new RequestUrlManager(),
+            new RequestHeaderManager(requestMethodManager),
+            new BeforeSendMiddlewareManager<MiddlewareOptions>(),
+            new AfterReceiveMiddlewareManager<any, MiddlewareOptions>(),
+            { foo: 'bar' },
+        );
+
+        expect(otherRequestSender).to.be.instanceOf(RequestSender);
+        expect(otherRequestSender.defaultOptions).to.deep.equal({
+            foo: 'bar',
+            beforeSendConversionMode: 'default',
+            afterReceiveConversionMode: 'default',
+            responseTimeout: 5000,
+        });
     });
 
     it('Should send a GET request', () => {
@@ -347,6 +365,29 @@ describe('RequestSender', () => {
             },
             '/foo/bar?id_bla=1&idFoo=2',
             { 'Content-Type': 'json' },
+        ]);
+
+        expect(requestSender.prepareRequest(
+            'get',
+            '/foo/bar',
+        )).to.deep.equal([
+            'GET',
+            {
+                body: {},
+                endpoint: '/foo/bar',
+                method: 'get',
+                url: '/foo/bar?',
+                parsedBody: null,
+                rawParameters: {},
+                headers: {},
+                options: {
+                    afterReceiveConversionMode: 'default',
+                    beforeSendConversionMode: 'default',
+                    responseTimeout: 5000,
+                },
+            },
+            '/foo/bar?',
+            {},
         ]);
     });
 
