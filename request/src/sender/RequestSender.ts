@@ -267,7 +267,7 @@ export abstract class RequestSender<ResponseContainer> {
         const combinedOptions = assign({}, this.defaultOptions, options);
 
         const parameters = this.getRequestParameters(
-            method,
+            parsedMethod as Method,
             endpoint,
             body,
             params,
