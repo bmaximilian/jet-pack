@@ -10,7 +10,7 @@
     "lint": "./node_modules/.bin/tslint --project tsconfig.json --config tslint.json",
     "test:unit": "nyc mocha src/**/*.unit.test.ts --recursive --require ts-node/register --require source-map-support/register",
     "test:integration": "nyc mocha src/**/*.integration.test.ts --recursive --require ts-node/register --require source-map-support/register",
-    "test": "nyc mocha src/**/*.test.ts src/**/**/*.test.ts --recursive --require ts-node/register --require source-map-support/register"
+    "test": "nyc mocha src/**/*.test.ts src/**/**/*.test.ts --recursive --require ts-node/register --require source-map-support/register --require ./unitTestSetup.ts"
   },
   "repository": {
     "type": "git",
@@ -35,10 +35,12 @@
   "homepage": "https://github.com/bmaximilian/jet-pack/blob/master/request/README.md",
   "devDependencies": {
     "@types/chai": "^4.1.7",
+    "@types/chai-spies": "^1.0.0",
     "@types/lodash": "^4.14.130",
     "@types/mocha": "^5.2.6",
     "@types/qs": "^6.5.3",
     "chai": "^4.2.0",
+    "chai-spies": "^1.0.0",
     "coveralls": "^3.0.3",
     "eslint-plugin-compat": "^3.1.1",
     "mocha": "^6.1.4",
@@ -58,7 +60,7 @@
   },
   "nyc": {
     "check-coverage": true,
-    "per-file": true,
+    "per-file": false,
     "lines": 80,
     "statements": 80,
     "functions": 60,
@@ -77,6 +79,7 @@
       ".nyc_output",
       "coverage",
       "node_modules",
+      "__mocks__",
       "**/index.*",
       "**/**/*.test.ts",
       "**/**/*.spec.ts"

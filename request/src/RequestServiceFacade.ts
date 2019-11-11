@@ -7,50 +7,50 @@
 import {
     get,
 } from 'lodash';
-import { Observable } from 'rxjs';
-import { AfterReceiveMiddlewareManager } from './manager/middleware/AfterReceiveMiddlewareManager';
-import { BeforeSendMiddlewareManager } from './manager/middleware/BeforeSendMiddlewareManager';
-import { MiddlewareFunction } from './manager/middleware/MiddlewareManager';
-import { IHeaders, RequestHeaderManager } from './manager/RequestHeaderManager';
-import { Method, RequestMethodManager } from './manager/RequestMethodManager';
-import { IUrlParameters, RequestUrlManager } from './manager/RequestUrlManager';
-import { FetchRequestSender } from './sender/FetchRequestSender';
-import { IMiddlewareOptions, IRequestBody, ISenderOptions } from './sender/RequestSender';
-import { RxRequestSender } from './sender/RxRequestSender';
+import {
+    Headers,
+    Method,
+    RequestHeaderManager,
+    RequestMethodManager,
+    RequestUrlManager,
+    UrlParameters,
+} from './manager';
+import { AfterReceiveMiddlewareManager, BeforeSendMiddlewareManager, MiddlewareFunction } from './manager/middleware';
+import { MiddlewareOptions, RequestBody, RequestSender, SenderOptions } from './sender';
 
 /**
  * @class RequestServiceFacade
  */
-export class RequestServiceFacade {
+export abstract class RequestServiceFacade<Response> {
     /**
      * @protected
      * @type {BeforeSendMiddlewareManager}
      */
-    private readonly beforeSendMiddlewareManager: BeforeSendMiddlewareManager<IMiddlewareOptions>;
+    protected readonly beforeSendMiddlewareManager: BeforeSendMiddlewareManager<MiddlewareOptions>;
 
     /**
      * @protected
      * @type {AfterReceiveMiddlewareManager}
      */
-    private readonly afterReceiveMiddlewareManager: AfterReceiveMiddlewareManager<any, IMiddlewareOptions>;
+    protected readonly afterReceiveMiddlewareManager: AfterReceiveMiddlewareManager<any, MiddlewareOptions>;
 
     /**
      * @protected
      * @type {RequestUrlManager}
      */
-    private readonly requestUrlManager: RequestUrlManager;
+    protected readonly requestUrlManager: RequestUrlManager;
 
     /**
      * @protected
      * @type {RequestMethodManager}
      */
-    private readonly requestMethodManager: RequestMethodManager;
+    protected readonly requestMethodManager: RequestMethodManager;
 
     /**
      * @protected
      * @type {RequestHeaderManager}
      */
-    private readonly requestHeaderManager: RequestHeaderManager;
+    protected readonly requestHeaderManager: RequestHeaderManager;
 
     /**
      * Constructor of Request
@@ -95,7 +95,7 @@ export class RequestServiceFacade {
      * @param {Function} middleware : Function : The middleware to add
      * @return {void}
      */
-    public addBeforeSendMiddleware(middleware: MiddlewareFunction<IMiddlewareOptions>): () => void {
+    public addBeforeSendMiddleware(middleware: MiddlewareFunction<MiddlewareOptions>): () => void {
         this.beforeSendMiddlewareManager.addMiddleware(middleware);
         return () => this.removeBeforeSendMiddleware(middleware);
     }
@@ -106,7 +106,7 @@ export class RequestServiceFacade {
      * @param {Function} middleware : Function : The middleware to remove
      * @return {void}
      */
-    public removeBeforeSendMiddleware(middleware: MiddlewareFunction<IMiddlewareOptions>): void {
+    public removeBeforeSendMiddleware(middleware: MiddlewareFunction<MiddlewareOptions>): void {
         this.beforeSendMiddlewareManager.removeMiddleware(middleware);
     }
 
@@ -153,7 +153,7 @@ export class RequestServiceFacade {
      * @param {Function} middleware : Function : The middleware to add
      * @return {void}
      */
-    public addAfterReceiveMiddleware(middleware: MiddlewareFunction<IMiddlewareOptions, any>): () => void {
+    public addAfterReceiveMiddleware(middleware: MiddlewareFunction<MiddlewareOptions, any>): () => void {
         this.afterReceiveMiddlewareManager.addMiddleware(middleware);
         return () => this.removeAfterReceiveMiddleware(middleware);
     }
@@ -164,7 +164,7 @@ export class RequestServiceFacade {
      * @param {Function} middleware : Function : The middleware to remove
      * @return {void}
      */
-    public removeAfterReceiveMiddleware(middleware: MiddlewareFunction<IMiddlewareOptions, any>): void {
+    public removeAfterReceiveMiddleware(middleware: MiddlewareFunction<MiddlewareOptions, any>): void {
         this.afterReceiveMiddlewareManager.removeMiddleware(middleware);
     }
 
@@ -175,33 +175,15 @@ export class RequestServiceFacade {
      * @param {Object} params : Object : URL parameters
      * @param {Object} headers : Object : Headers for the request
      * @param {Object} options : Object : Options
-     * @returns {Observable<AjaxResponse>} : Returns an Observable sending the request
+     * @returns {Response} : Returns the response
      */
     public get(
         url: string,
-        params: IUrlParameters = {},
-        headers: IHeaders = {},
-        options: Partial<ISenderOptions> = {},
-    ): Observable<any> {
+        params: UrlParameters = {},
+        headers: Headers = {},
+        options: Partial<SenderOptions> = {},
+    ): Response {
         return this.createRequestSender().get(url, params, headers, options);
-    }
-
-    /**
-     * Sends a get request with fetch
-     *
-     * @param {String} url : String : The route to the request
-     * @param {Object} params : Object : URL parameters
-     * @param {Object} headers : Object : Headers for the request
-     * @param {Object} options : Object : Options
-     * @returns {Promise<any>} : Returns an Observable sending the request
-     */
-    public fetchGet(
-        url: string,
-        params: IUrlParameters = {},
-        headers: IHeaders = {},
-        options: Partial<ISenderOptions> = {},
-    ) {
-        return this.createFetchRequestSender().get(url, params, headers, options);
     }
 
     /**
@@ -212,15 +194,15 @@ export class RequestServiceFacade {
      * @param {Object} params : Object : URL parameters
      * @param {Object} headers : Object : Headers for the request
      * @param {Object} options : Object : Options
-     * @returns {Observable<AjaxResponse>} : Returns an Observable sending the request
+     * @returns {Response} : Returns the response
      */
     public post(
         url: string,
-        body: IRequestBody = {},
-        params: IUrlParameters = {},
-        headers: IHeaders = {},
-        options: Partial<ISenderOptions> = {},
-    ) {
+        body: RequestBody = {},
+        params: UrlParameters = {},
+        headers: Headers = {},
+        options: Partial<SenderOptions> = {},
+    ): Response {
         return this.createRequestSender().post(url, body, params, headers, options);
     }
 
@@ -232,15 +214,15 @@ export class RequestServiceFacade {
      * @param {Object} params : Object : URL parameters
      * @param {Object} headers : Object : Headers for the request
      * @param {Object} options : Object : Options
-     * @returns {Observable<AjaxResponse>} : Returns an Observable sending the request
+     * @returns {Response} : Returns the response
      */
     public put(
         url: string,
-        body: IRequestBody = {},
-        params: IUrlParameters = {},
-        headers: IHeaders = {},
-        options: Partial<ISenderOptions> = {},
-    ) {
+        body: RequestBody = {},
+        params: UrlParameters = {},
+        headers: Headers = {},
+        options: Partial<SenderOptions> = {},
+    ): Response {
         return this.createRequestSender().put(url, body, params, headers, options);
     }
 
@@ -252,15 +234,15 @@ export class RequestServiceFacade {
      * @param {Object} params : Object : URL parameters
      * @param {Object} headers : Object : Headers for the request
      * @param {Object} options : Object : Options
-     * @returns {Observable<AjaxResponse>} : Returns an Observable sending the request
+     * @returns {Response} : Returns the response
      */
     public patch(
         url: string,
-        body: IRequestBody = {},
-        params: IUrlParameters = {},
-        headers: IHeaders = {},
-        options: Partial<ISenderOptions> = {},
-    ) {
+        body: RequestBody = {},
+        params: UrlParameters = {},
+        headers: Headers = {},
+        options: Partial<SenderOptions> = {},
+    ): Response {
         return this.createRequestSender().patch(url, body, params, headers, options);
     }
 
@@ -271,23 +253,23 @@ export class RequestServiceFacade {
      * @param {Object} params : Object : URL parameters
      * @param {Object} headers : Object : Headers for the request
      * @param {Object} options : Object : Options
-     * @returns {Observable<AjaxResponse>} : Returns an Observable sending the request
+     * @returns {Response} : Returns the response
      */
     public delete(
         url: string,
-        params: IUrlParameters = {},
-        headers: IHeaders = {},
-        options: Partial<ISenderOptions> = {},
-    ) {
+        params: UrlParameters = {},
+        headers: Headers = {},
+        options: Partial<SenderOptions> = {},
+    ): Response {
         return this.createRequestSender().delete(url, params, headers, options);
     }
 
     /**
      * Returns the sender options for the request sender
      *
-     * @return {Partial<ISenderOptions>} : The sender options
+     * @return {Partial<SenderOptions>} : The sender options
      */
-    protected get senderOptions(): Partial<ISenderOptions> {
+    protected get senderOptions(): Partial<SenderOptions> {
         return {};
     }
 
@@ -297,31 +279,5 @@ export class RequestServiceFacade {
      * @protected
      * @return {*}
      */
-    protected createRequestSender() {
-        return new RxRequestSender(
-            this.requestMethodManager,
-            this.requestUrlManager,
-            this.requestHeaderManager,
-            this.beforeSendMiddlewareManager,
-            this.afterReceiveMiddlewareManager,
-            this.senderOptions,
-        );
-    }
-
-    /**
-     * Creates a sender instance
-     *
-     * @protected
-     * @return {*}
-     */
-    protected createFetchRequestSender() {
-        return new FetchRequestSender(
-            this.requestMethodManager,
-            this.requestUrlManager,
-            this.requestHeaderManager,
-            this.beforeSendMiddlewareManager,
-            this.afterReceiveMiddlewareManager,
-            this.senderOptions,
-        );
-    }
+    protected abstract createRequestSender(): RequestSender<Response>;
 }

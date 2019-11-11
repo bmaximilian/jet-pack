@@ -23,6 +23,7 @@
       true,
       "array"
     ],
+    "interface-name": [true, "never-prefix"],
     "import-name": [
       true,
       {}

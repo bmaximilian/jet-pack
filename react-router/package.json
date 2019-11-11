@@ -71,16 +71,21 @@
       "text-summary",
       "html"
     ],
-    "include": [
-      "src/**/*.test.ts"
-    ],
     "extension": [
       ".ts",
       ".tsx"
     ],
     "exclude": [
       "dist",
-      "src/index.*"
+      ".nyc_output",
+      "coverage",
+      "node_modules",
+      "**/index.*",
+      "**/**/*.test.ts",
+      "**/**/*.spec.ts",
+      "**/**/*.test.tsx",
+      "**/**/*.spec.tsx",
+      "unitTestSetup.ts"
     ],
     "cache": true,
     "all": false,
