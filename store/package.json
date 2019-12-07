@@ -88,7 +88,7 @@
     "report-dir": "./coverage"
   },
   "dependencies": {
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-observable": "^1.1.0",
