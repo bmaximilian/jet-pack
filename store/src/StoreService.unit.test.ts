@@ -10,7 +10,6 @@ import 'mocha';
 import { ReduxAction, TReducer } from './ReduxAction';
 import { StoreService } from './StoreService';
 import Sandbox = ChaiSpies.Sandbox;
-import { expand } from 'rxjs/operators';
 
 class TestAction extends ReduxAction {
     constructor(private readonly payload: any) {super();}
