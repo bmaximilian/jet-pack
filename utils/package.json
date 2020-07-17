@@ -57,7 +57,7 @@
     "typescript": "^3.4.5"
   },
   "dependencies": {
-    "lodash": "^4.17.13"
+    "lodash": "^4.17.19"
   },
   "nyc": {
     "check-coverage": true,
