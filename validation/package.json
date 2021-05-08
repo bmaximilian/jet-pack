@@ -89,7 +89,7 @@
   },
   "dependencies": {
     "indicative": "^5.0.8",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.21",
     "rxjs": "^6.5.2"
   },
   "peerDependencies": {
