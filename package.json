@@ -15,7 +15,7 @@
     "lodash": "^4.17.13",
     "node-fetch": "^2.5.0",
     "nodexec": "0.9.0",
-    "simple-git": "^1.113.0"
+    "simple-git": "^3.5.0"
   },
   "modules": [
     "react-filter",
